@@ -20,6 +20,8 @@ ARG APP_NAME
 WORKDIR /app/
 
 # copy from build image
-COPY --from=builder /app/services/$APP_NAME/dist ./
+COPY --from=builder /app/apps/$APP_NAME/.next ./
+COPY --from=builder /app/apps/$APP_NAME/node_modules ./
+COPY --from=builder /app/apps/$APP_NAME/package.json ./
 
-CMD ["node", "index.js"]
+CMD ["npm", "start"]

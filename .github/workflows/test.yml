@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: ./docker/services/service.dockerfile
+          file: ./docker/apps/apps.dockerfile
           platforms: linux/amd64
           push: false
           tags: ghcr.io/${{ github.repository }}/${{ matrix.app }}:pr-${{ github.event.number }}

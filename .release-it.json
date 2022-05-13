@@ -1,0 +1,25 @@
+{
+  "npm": {
+    "publish": false
+  },
+  "github": {
+    "release": true
+  },
+  "git": {
+    "requireCleanWorkingDir": false
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "angular",
+      "infile": "CHANGELOG.md",
+      "header": "# Changelog"
+    },
+    "@release-it/bumper": {
+      "out": [
+        "packages/**/package.json",
+        "apps/**/package.json",
+        "services/**/package.json"
+      ]
+    }
+  }
+}

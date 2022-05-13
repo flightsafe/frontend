@@ -1,9 +1,8 @@
+const { join } = require("path");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    outputStandalone: true
-  }
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

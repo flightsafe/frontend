@@ -1,11 +1,9 @@
 {
   "name": "urls",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "List of backend urls",
   "main": "index.js",
-  "scripts": {
-
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC"

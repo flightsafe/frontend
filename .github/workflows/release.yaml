@@ -5,6 +5,8 @@ on:
     types:
       - released
 
+permissions: write-all
+
 jobs:
   docker-service:
     name: Build dockerized services

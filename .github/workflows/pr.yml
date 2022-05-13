@@ -10,6 +10,8 @@ on:
       - synchronize
 jobs:
   label:
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     name: Lint PR
     steps:
@@ -18,6 +20,8 @@ jobs:
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
   outdater:
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     name: Dependencies outdater
     steps:

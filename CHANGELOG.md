@@ -1,5 +1,12 @@
 # Changelog
 
+# 1.1.0 (2022-05-16)
+
+
+### Features
+
+* add ui and common package ([#2](https://github.com/flightsafe/frontend/issues/2)) ([13e8be2](https://github.com/flightsafe/frontend/commit/13e8be2206b184cb963eb2878aca5406fe59fd1b))
+
 ## 1.0.3 (2022-05-16)
 
 ## 1.0.2 (2022-05-13)

@@ -1,10 +1,8 @@
 {
   "name": "common",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "src/index.ts",
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
     "typescript": "^4.6.4"
   }

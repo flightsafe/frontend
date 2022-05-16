@@ -1,18 +1,18 @@
-import { exec } from "child_process";
 import * as dotenv from "dotenv";
+import { codegen } from "swagger-axios-codegen";
+import axios from "axios";
 
 (async () => {
   dotenv.config();
   const host = process.env.API_HOST || "http://localhost";
-  exec(
-    `swagger-codegen generate -i ${host}/spec -l typescript-axios -o ./src/api/client`,
-    (err, stdout, stderr) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log(stdout);
-      console.log(stderr);
-    }
-  );
+  const response = await axios.get(`${host}/spec/?format=openapi-json`);
+  const data = response.data;
+
+  await codegen({
+    source: data,
+    methodNameMode: "operationId",
+    useHeaderParameters: true,
+    outputDir: "./packages/api_client",
+    openApi: data.openapi,
+  });
 })();

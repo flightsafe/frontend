@@ -32,6 +32,8 @@
     "@release-it/conventional-changelog": "^5.0.0",
     "@release-it/bumper": "^4.0.0",
     "prettier": "^2.6.2",
-    "dotenv": "latest"
+    "dotenv": "latest",
+    "swagger-axios-codegen": "latest",
+    "axios": "^0.27.2"
   }
 }

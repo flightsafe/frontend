@@ -14,7 +14,8 @@
     "start": "turbo run start",
     "release": "release-it",
     "release-dry": "release-it --dry-run",
-    "lint": "prettier --check **/*/*.ts"
+    "lint": "prettier --check **/*/*.ts",
+    "generate": "ts-node ./scripts/generate_api_client.ts"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,7 @@
     "release-it": "^15.0.0",
     "@release-it/conventional-changelog": "^5.0.0",
     "@release-it/bumper": "^4.0.0",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "dotenv": "latest"
   }
 }

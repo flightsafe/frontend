@@ -50,7 +50,7 @@ export function getConfigs(method: string, contentType: string, url: string, opt
   return configs;
 }
 
-export const basePath = '';
+export const basePath = 'http://127.0.0.1:8000';
 
 export interface IList<T> extends Array<T> {}
 export interface List<T> extends Array<T> {}
@@ -84,35 +84,20 @@ export class PlaneService {
   /**
    *
    */
-  static listPlanes(options: IRequestOptions = {}): Promise<Plane[]> {
+  static listPlanes(
+    params: {
+      /** A page number within the paginated result set. */
+      page?: number;
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<any> {
     return new Promise((resolve, reject) => {
       let url = basePath + '/plane/plane/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+      configs.params = { page: params['page'] };
 
       /** 适配ios13，get请求不允许带body */
-
-      axios(configs, resolve, reject);
-    });
-  }
-  /**
-   *
-   */
-  static createPlane(
-    params: {
-      /** requestBody */
-      body?: Plane;
-    } = {} as any,
-    options: IRequestOptions = {}
-  ): Promise<Plane> {
-    return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/plane/';
-
-      const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
-
-      let data = params.body;
-
-      configs.data = data;
 
       axios(configs, resolve, reject);
     });
@@ -141,108 +126,22 @@ export class PlaneService {
   /**
    *
    */
-  static updatePlane(
+  static listMaintenanceRecords(
     params: {
-      /** A unique integer value identifying this plane. */
-      id: string;
-      /** requestBody */
-      body?: Plane;
-    } = {} as any,
-    options: IRequestOptions = {}
-  ): Promise<Plane> {
-    return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/plane/{id}/';
-      url = url.replace('{id}', params['id'] + '');
-
-      const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
-
-      let data = params.body;
-
-      configs.data = data;
-
-      axios(configs, resolve, reject);
-    });
-  }
-  /**
-   *
-   */
-  static partialUpdatePlane(
-    params: {
-      /** A unique integer value identifying this plane. */
-      id: string;
-      /** requestBody */
-      body?: Plane;
-    } = {} as any,
-    options: IRequestOptions = {}
-  ): Promise<Plane> {
-    return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/plane/{id}/';
-      url = url.replace('{id}', params['id'] + '');
-
-      const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
-
-      let data = params.body;
-
-      configs.data = data;
-
-      axios(configs, resolve, reject);
-    });
-  }
-  /**
-   *
-   */
-  static destroyPlane(
-    params: {
-      /** A unique integer value identifying this plane. */
-      id: string;
+      /** A page number within the paginated result set. */
+      page?: number;
+      /** plane */
+      plane?: string;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/plane/{id}/';
-      url = url.replace('{id}', params['id'] + '');
-
-      const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
-
-      let data = null;
-
-      configs.data = data;
-
-      axios(configs, resolve, reject);
-    });
-  }
-  /**
-   *
-   */
-  static listMaintenanceRecords(options: IRequestOptions = {}): Promise<MaintenanceRecord[]> {
-    return new Promise((resolve, reject) => {
       let url = basePath + '/plane/maintenance/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+      configs.params = { page: params['page'], plane: params['plane'] };
 
       /** 适配ios13，get请求不允许带body */
-
-      axios(configs, resolve, reject);
-    });
-  }
-  /**
-   *
-   */
-  static createMaintenanceRecord(
-    params: {
-      /** requestBody */
-      body?: MaintenanceRecord;
-    } = {} as any,
-    options: IRequestOptions = {}
-  ): Promise<MaintenanceRecord> {
-    return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance/';
-
-      const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
-
-      let data = params.body;
-
-      configs.data = data;
 
       axios(configs, resolve, reject);
     });
@@ -254,14 +153,17 @@ export class PlaneService {
     params: {
       /** A unique integer value identifying this maintenance record. */
       id: string;
+      /** plane */
+      plane?: string;
     } = {} as any,
     options: IRequestOptions = {}
-  ): Promise<MaintenanceRecord> {
+  ): Promise<MaintenanceRecordDetail> {
     return new Promise((resolve, reject) => {
       let url = basePath + '/plane/maintenance/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+      configs.params = { plane: params['plane'] };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -271,108 +173,20 @@ export class PlaneService {
   /**
    *
    */
-  static updateMaintenanceRecord(
+  static listMaintenanceRecordItems(
     params: {
-      /** A unique integer value identifying this maintenance record. */
-      id: string;
-      /** requestBody */
-      body?: MaintenanceRecord;
-    } = {} as any,
-    options: IRequestOptions = {}
-  ): Promise<MaintenanceRecord> {
-    return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance/{id}/';
-      url = url.replace('{id}', params['id'] + '');
-
-      const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
-
-      let data = params.body;
-
-      configs.data = data;
-
-      axios(configs, resolve, reject);
-    });
-  }
-  /**
-   *
-   */
-  static partialUpdateMaintenanceRecord(
-    params: {
-      /** A unique integer value identifying this maintenance record. */
-      id: string;
-      /** requestBody */
-      body?: MaintenanceRecord;
-    } = {} as any,
-    options: IRequestOptions = {}
-  ): Promise<MaintenanceRecord> {
-    return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance/{id}/';
-      url = url.replace('{id}', params['id'] + '');
-
-      const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
-
-      let data = params.body;
-
-      configs.data = data;
-
-      axios(configs, resolve, reject);
-    });
-  }
-  /**
-   *
-   */
-  static destroyMaintenanceRecord(
-    params: {
-      /** A unique integer value identifying this maintenance record. */
-      id: string;
+      /** A page number within the paginated result set. */
+      page?: number;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance/{id}/';
-      url = url.replace('{id}', params['id'] + '');
-
-      const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
-
-      let data = null;
-
-      configs.data = data;
-
-      axios(configs, resolve, reject);
-    });
-  }
-  /**
-   *
-   */
-  static listMaintenanceRecordItems(options: IRequestOptions = {}): Promise<MaintenanceRecordItem[]> {
-    return new Promise((resolve, reject) => {
       let url = basePath + '/plane/maintenance-item/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+      configs.params = { page: params['page'] };
 
       /** 适配ios13，get请求不允许带body */
-
-      axios(configs, resolve, reject);
-    });
-  }
-  /**
-   *
-   */
-  static createMaintenanceRecordItem(
-    params: {
-      /** requestBody */
-      body?: MaintenanceRecordItem;
-    } = {} as any,
-    options: IRequestOptions = {}
-  ): Promise<MaintenanceRecordItem> {
-    return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance-item/';
-
-      const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
-
-      let data = params.body;
-
-      configs.data = data;
 
       axios(configs, resolve, reject);
     });
@@ -398,23 +212,23 @@ export class PlaneService {
       axios(configs, resolve, reject);
     });
   }
+}
+
+export class TokenService {
   /**
    *
    */
-  static updateMaintenanceRecordItem(
+  static createTokenObtainPair(
     params: {
-      /** A unique integer value identifying this maintenance record item. */
-      id: string;
       /** requestBody */
-      body?: MaintenanceRecordItem;
+      body?: TokenObtainPair;
     } = {} as any,
     options: IRequestOptions = {}
-  ): Promise<MaintenanceRecordItem> {
+  ): Promise<TokenObtainPair> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance-item/{id}/';
-      url = url.replace('{id}', params['id'] + '');
+      let url = basePath + '/token/';
 
-      const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
+      const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
       let data = params.body;
 
@@ -426,45 +240,19 @@ export class PlaneService {
   /**
    *
    */
-  static partialUpdateMaintenanceRecordItem(
+  static createTokenRefresh(
     params: {
-      /** A unique integer value identifying this maintenance record item. */
-      id: string;
       /** requestBody */
-      body?: MaintenanceRecordItem;
+      body?: TokenRefresh;
     } = {} as any,
     options: IRequestOptions = {}
-  ): Promise<MaintenanceRecordItem> {
+  ): Promise<TokenRefresh> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance-item/{id}/';
-      url = url.replace('{id}', params['id'] + '');
+      let url = basePath + '/token/refresh/';
 
-      const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
+      const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
       let data = params.body;
-
-      configs.data = data;
-
-      axios(configs, resolve, reject);
-    });
-  }
-  /**
-   *
-   */
-  static destroyMaintenanceRecordItem(
-    params: {
-      /** A unique integer value identifying this maintenance record item. */
-      id: string;
-    } = {} as any,
-    options: IRequestOptions = {}
-  ): Promise<any> {
-    return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance-item/{id}/';
-      url = url.replace('{id}', params['id'] + '');
-
-      const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
-
-      let data = null;
 
       configs.data = data;
 
@@ -475,7 +263,7 @@ export class PlaneService {
 
 export interface Plane {
   /**  */
-  url?: string;
+  id?: number;
 
   /**  */
   name: string;
@@ -495,7 +283,16 @@ export interface Plane {
 
 export interface MaintenanceRecord {
   /**  */
-  url?: string;
+  id?: number;
+
+  /**  */
+  start_time?: Date;
+
+  /**  */
+  end_time?: Date;
+
+  /**  */
+  status?: string;
 
   /**  */
   name?: string;
@@ -507,12 +304,44 @@ export interface MaintenanceRecord {
   progress?: EnumMaintenanceRecordProgress;
 
   /**  */
-  plane: string;
+  plane: number;
+}
+
+export interface MaintenanceRecordDetail {
+  /**  */
+  id?: number;
+
+  /**  */
+  items?: object[];
+
+  /**  */
+  start_time?: Date;
+
+  /**  */
+  end_time?: Date;
+
+  /**  */
+  status?: string;
+
+  /**  */
+  plane_name?: string;
+
+  /**  */
+  name?: string;
+
+  /** Maintenance record description */
+  description: string;
+
+  /**  */
+  progress?: EnumMaintenanceRecordDetailProgress;
+
+  /**  */
+  plane: number;
 }
 
 export interface MaintenanceRecordItem {
   /**  */
-  url?: string;
+  id?: number;
 
   /**  */
   name: string;
@@ -533,13 +362,41 @@ export interface MaintenanceRecordItem {
   expire_at?: Date;
 
   /**  */
-  maintenance_record: string;
+  status?: EnumMaintenanceRecordItemStatus;
 
   /**  */
-  operator?: string;
+  maintenance_record: number;
+
+  /**  */
+  operator?: number;
+}
+
+export interface TokenObtainPair {
+  /**  */
+  username: string;
+
+  /**  */
+  password: string;
+}
+
+export interface TokenRefresh {
+  /**  */
+  refresh: string;
+
+  /**  */
+  access?: string;
 }
 export enum EnumMaintenanceRecordProgress {
   'PENDING' = 'PENDING',
   'IN_PROGRESS' = 'IN_PROGRESS',
   'FINISHED' = 'FINISHED'
+}
+export enum EnumMaintenanceRecordDetailProgress {
+  'PENDING' = 'PENDING',
+  'IN_PROGRESS' = 'IN_PROGRESS',
+  'FINISHED' = 'FINISHED'
+}
+export enum EnumMaintenanceRecordItemStatus {
+  'GOOD_CONDITION' = 'GOOD_CONDITION',
+  'BAD_CONDITION' = 'BAD_CONDITION'
 }

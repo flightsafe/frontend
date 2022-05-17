@@ -3,6 +3,10 @@ import type { AppProps } from "next/app";
 import { Layout, Menu } from "ui";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { AirplanemodeActive } from "@mui/icons-material";
+import { QueryClient, QueryClientProvider } from "react-query";
+import NextProgress from "next-progress";
+import { AuthenticationProvider } from "model";
+import { getAuthenticator } from "../utils/getAuthenticator";
 
 const darkTheme = createTheme({
   components: {
@@ -13,14 +17,22 @@ const darkTheme = createTheme({
         },
       },
     },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 20,
+          backgroundColor: "white",
+        },
+      },
+    },
   },
   palette: {
     mode: "light",
     background: {
-      default: "#F7F9FC",
+      default: "#f0f1f2",
     },
     primary: {
-      main: "#c7007e",
+      main: "#00ab55",
     },
   },
 });
@@ -34,13 +46,22 @@ const menus: Menu[] = [
 ];
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const queryClient = new QueryClient();
+
   return (
-    <ThemeProvider theme={darkTheme}>
-      <Layout menus={menus}>
-        <Component {...pageProps} />
-        <CssBaseline />
-      </Layout>
-    </ThemeProvider>
+    <AuthenticationProvider authenticator={getAuthenticator()}>
+      <>
+        <NextProgress delay={300} options={{ showSpinner: true }} />
+        <ThemeProvider theme={darkTheme}>
+          <QueryClientProvider client={queryClient}>
+            <Layout menus={menus}>
+              <Component {...pageProps} />
+              <CssBaseline />
+            </Layout>
+          </QueryClientProvider>
+        </ThemeProvider>
+      </>
+    </AuthenticationProvider>
   );
 }
 

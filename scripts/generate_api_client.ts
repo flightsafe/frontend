@@ -8,11 +8,15 @@ import axios from "axios";
   const response = await axios.get(`${host}/spec/?format=openapi-json`);
   const data = response.data;
 
+  data.basePath = host;
+
   await codegen({
     source: data,
     methodNameMode: "operationId",
     useHeaderParameters: true,
+    useStaticMethod: true,
     outputDir: "./packages/api_client",
     openApi: data.openapi,
+    sharedServiceOptions: false,
   });
 })();

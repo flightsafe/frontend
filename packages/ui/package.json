@@ -20,7 +20,11 @@
     "@mui/system": "^5.7.0",
     "@mui/lab": "^5.0.0-alpha.81",
     "next": "^12.1.6",
-    "common": "workspace:*"
+    "common": "workspace:*",
+    "api-client": "workspace:*",
+    "moment": "^2.29.3",
+    "model": "workspace:*",
+    "formik": "latest"
   },
   "devDependencies": {
     "@types/node": "17.0.33",

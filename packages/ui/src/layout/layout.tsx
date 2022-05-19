@@ -14,12 +14,13 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { Add } from "@mui/icons-material";
+import { Add, ExitToApp } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import React from "react";
 import { SearchBar } from "./searchBar";
 import { configs } from "common";
+import { AuthenticationContext } from "model";
 
 export interface Menu {
   title: string;
@@ -33,21 +34,30 @@ interface Props {
 }
 
 /**
- * Default layout for the app. Including a sidebar, a appbar,
+ * Default layout for the app. Including a sidebar, an appbar,
  * and will automatically fit different screen size
  * @param {any} props Props
  * @constructor
  */
 export function Layout(props: Props) {
   const { children, menus } = props;
+  const { isSignedIn, signOut } = React.useContext(AuthenticationContext);
   const router = useRouter();
 
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {
+    if (!isSignedIn && router.pathname !== "/") {
+      router.replace("/").then(console.log);
+    }
+
+    if (isSignedIn && router.pathname === "/") {
+      router.replace(menus[0].link).then(console.log);
+    }
+  }, [isSignedIn, router]);
 
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   React.useEffect(() => {
-    const found = menus.findIndex((m) => router.pathname.includes(m.link));
+    const found = menus.findIndex((m) => router.route.includes(m.link));
     if (found >= 0) {
       setSelectedIndex(found);
     }
@@ -75,6 +85,11 @@ export function Layout(props: Props) {
           <Add />
         </IconButton>
       </Tooltip>
+      <Tooltip title={"Sign out"}>
+        <IconButton onClick={() => signOut()}>
+          <ExitToApp />
+        </IconButton>
+      </Tooltip>
     </Stack>
   );
 
@@ -97,12 +112,16 @@ export function Layout(props: Props) {
     </AppBar>
   );
 
+  if (router.pathname === "/") {
+    return <div>{children}</div>;
+  }
+
   return (
     <div>
       {/*Left Desktop toolbar*/}
       <Hidden only={["xs"]}>
         {appbar}
-        <Drawer variant="permanent">
+        <Drawer variant="permanent" style={{ border: 0 }}>
           <List
             style={{
               width: configs.drawerSize,
@@ -120,6 +139,7 @@ export function Layout(props: Props) {
         <main
           style={{
             marginLeft: configs.drawerSize,
+            paddingRight: 100,
             marginTop: configs.appbarHeight,
           }}
         >

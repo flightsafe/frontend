@@ -1,5 +1,12 @@
 # Changelog
 
+# 1.2.0 (2022-05-19)
+
+
+### Features
+
+* finish basic list functions for plane ([#3](https://github.com/flightsafe/frontend/issues/3)) ([2e2b220](https://github.com/flightsafe/frontend/commit/2e2b2207688abb789d61b7eddac076c16c55cda2))
+
 # 1.1.0 (2022-05-16)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1 (2022-05-20)
+
+
+### Bug Fixes
+
+* release action ([0518a03](https://github.com/flightsafe/frontend/commit/0518a0397ded5725d78bb8e0721e1ed59f9d1718))
+
 # 1.2.0 (2022-05-19)
 
 

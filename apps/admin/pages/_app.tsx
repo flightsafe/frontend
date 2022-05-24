@@ -1,67 +1,44 @@
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
-import { Layout, Menu } from "ui";
-import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { AirplanemodeActive } from "@mui/icons-material";
-import { QueryClient, QueryClientProvider } from "react-query";
-import NextProgress from "next-progress";
-import { AuthenticationProvider } from "model";
-import { getAuthenticator } from "../utils/getAuthenticator";
+import { AppProps } from "next/app";
 
-const darkTheme = createTheme({
-  components: {
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          backgroundColor: "white",
-        },
-      },
-    },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: 20,
-          backgroundColor: "white",
-        },
-      },
-    },
-  },
-  palette: {
-    mode: "light",
-    background: {
-      default: "#f0f1f2",
-    },
-    primary: {
-      main: "#00ab55",
-    },
-  },
-});
+import { Refine } from "@pankod/refine-core";
+import {
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
+  LoginPage,
+} from "@pankod/refine-antd";
 
-const menus: Menu[] = [
-  {
-    title: "Plane",
-    link: "/plane",
-    icon: <AirplanemodeActive />,
-  },
-];
+import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-nextjs-router";
+import ListPlanesPage from "../src/pages/planes/ListPlanes";
+import { authProvider } from "../src/authProvider";
+import "@pankod/refine-antd/dist/styles.min.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient();
+const API_URL = "http://localhost:8000/plane";
 
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <AuthenticationProvider authenticator={getAuthenticator()}>
-      <>
-        <NextProgress delay={300} options={{ showSpinner: true }} />
-        <ThemeProvider theme={darkTheme}>
-          <QueryClientProvider client={queryClient}>
-            <Layout menus={menus}>
-              <Component {...pageProps} />
-              <CssBaseline />
-            </Layout>
-          </QueryClientProvider>
-        </ThemeProvider>
-      </>
-    </AuthenticationProvider>
+    //@ts-ignore
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      authProvider={authProvider}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      LoginPage={LoginPage}
+      resources={[
+        {
+          name: "plane",
+          list: ListPlanesPage,
+          
+        },
+      ]}
+    >
+      <Component {...pageProps} />
+    </Refine>
   );
 }
 

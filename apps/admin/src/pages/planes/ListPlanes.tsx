@@ -4,14 +4,15 @@ import {
   TextField,
   TagField,
   DateField,
+  ImageField,
   Table,
   useTable,
+  ShowButton,
 } from "@pankod/refine-antd";
 import { Plane } from "api-client";
 
 export default function ListPlanesPage() {
   const { tableProps } = useTable<Plane>();
-  console.log(tableProps);
 
   return (
     //@ts-ignore
@@ -23,10 +24,29 @@ export default function ListPlanesPage() {
           title="name"
           render={(value) => <TagField value={value} />}
         />
+
         <Table.Column
-          dataIndex="description"
-          title="description"
-          render={(value) => <DateField format="LLL" value={value} />}
+          dataIndex="image"
+          title="Image"
+          render={(value) => <ImageField value={value} width={300} />}
+        />
+        <Table.Column
+          dataIndex="created_time"
+          title="Created time"
+          render={(value) => <DateField format={"LLL"} value={value} />}
+        />
+        <Table.Column
+          dataIndex="updated_time"
+          title="Updated time"
+          render={(value) => <DateField format={"LLL"} value={value} />}
+        />
+        <Table.Column<Plane>
+          dataIndex={"actions"}
+          render={(_text, record): React.ReactNode => {
+            return (
+              <ShowButton size="small" recordItemId={record.id} hideText />
+            );
+          }}
         />
       </Table>
     </List>

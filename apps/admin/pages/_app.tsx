@@ -9,13 +9,15 @@ import {
   LoginPage,
 } from "@pankod/refine-antd";
 
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "drf-data-provider";
 import routerProvider from "@pankod/refine-nextjs-router";
 import ListPlanesPage from "../src/pages/planes/ListPlanes";
+import ShowPlanePage from "../src/pages/planes/ShowPlanes";
 import { authProvider } from "../src/authProvider";
 import "@pankod/refine-antd/dist/styles.min.css";
+import CreateMaintenance from "../src/pages/maintenance/CreateMaintenance";
 
-const API_URL = "http://localhost:8000/plane";
+const API_URL = "http://0.0.0.0:8000/api";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -33,7 +35,11 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         {
           name: "plane",
           list: ListPlanesPage,
-          
+          show: ShowPlanePage,
+        },
+        {
+          name: "maintenance",
+          create: CreateMaintenance,
         },
       ]}
     >

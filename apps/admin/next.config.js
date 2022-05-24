@@ -5,6 +5,7 @@ const withTM = require("next-transpile-modules")([
   "common",
   "api-client",
   "model",
+  "drf-data-provider",
 ]);
 const { i18n } = require("./next-i18next.config");
 

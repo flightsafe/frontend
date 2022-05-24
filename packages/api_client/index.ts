@@ -80,7 +80,7 @@ export class PagedResultDto<T = any> implements IPagedResult<T> {
 // customer definition
 // empty
 
-export class PlaneService {
+export class ApiService {
   /**
    *
    */
@@ -88,14 +88,25 @@ export class PlaneService {
     params: {
       /** A page number within the paginated result set. */
       page?: number;
+      /** Number of results to return per page. */
+      pageSize?: number;
+      /** name */
+      name?: string;
+      /** description */
+      description?: string;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/plane/';
+      let url = basePath + '/api/plane/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
-      configs.params = { page: params['page'] };
+      configs.params = {
+        page: params['page'],
+        page_size: params['pageSize'],
+        name: params['name'],
+        description: params['description']
+      };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -113,7 +124,7 @@ export class PlaneService {
     options: IRequestOptions = {}
   ): Promise<Plane> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/plane/';
+      let url = basePath + '/api/plane/';
 
       const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
@@ -129,7 +140,7 @@ export class PlaneService {
    */
   static metadataPlane(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/plane/';
+      let url = basePath + '/api/plane/';
 
       const configs: IRequestConfig = getConfigs('options', 'application/json', url, options);
 
@@ -147,14 +158,19 @@ export class PlaneService {
     params: {
       /** A unique integer value identifying this plane. */
       id: string;
+      /** name */
+      name?: string;
+      /** description */
+      description?: string;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<Plane> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/plane/{id}/';
+      let url = basePath + '/api/plane/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+      configs.params = { name: params['name'], description: params['description'] };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -168,16 +184,21 @@ export class PlaneService {
     params: {
       /** A unique integer value identifying this plane. */
       id: string;
+      /** name */
+      name?: string;
+      /** description */
+      description?: string;
       /** requestBody */
       body?: Plane;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<Plane> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/plane/{id}/';
+      let url = basePath + '/api/plane/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
+      configs.params = { name: params['name'], description: params['description'] };
 
       let data = params.body;
 
@@ -193,16 +214,21 @@ export class PlaneService {
     params: {
       /** A unique integer value identifying this plane. */
       id: string;
+      /** name */
+      name?: string;
+      /** description */
+      description?: string;
       /** requestBody */
       body?: Plane;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<Plane> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/plane/{id}/';
+      let url = basePath + '/api/plane/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
+      configs.params = { name: params['name'], description: params['description'] };
 
       let data = params.body;
 
@@ -218,14 +244,19 @@ export class PlaneService {
     params: {
       /** A unique integer value identifying this plane. */
       id: string;
+      /** name */
+      name?: string;
+      /** description */
+      description?: string;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/plane/{id}/';
+      let url = basePath + '/api/plane/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
+      configs.params = { name: params['name'], description: params['description'] };
 
       let data = null;
 
@@ -241,16 +272,18 @@ export class PlaneService {
     params: {
       /** A page number within the paginated result set. */
       page?: number;
+      /** Number of results to return per page. */
+      pageSize?: number;
       /** plane */
       plane?: string;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance/';
+      let url = basePath + '/api/maintenance/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
-      configs.params = { page: params['page'], plane: params['plane'] };
+      configs.params = { page: params['page'], page_size: params['pageSize'], plane: params['plane'] };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -268,7 +301,7 @@ export class PlaneService {
     options: IRequestOptions = {}
   ): Promise<MaintenanceRecord> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance/';
+      let url = basePath + '/api/maintenance/';
 
       const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
@@ -284,7 +317,7 @@ export class PlaneService {
    */
   static metadataMaintenanceRecord(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance/';
+      let url = basePath + '/api/maintenance/';
 
       const configs: IRequestConfig = getConfigs('options', 'application/json', url, options);
 
@@ -308,7 +341,7 @@ export class PlaneService {
     options: IRequestOptions = {}
   ): Promise<MaintenanceRecordDetail> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance/{id}/';
+      let url = basePath + '/api/maintenance/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
@@ -334,7 +367,7 @@ export class PlaneService {
     options: IRequestOptions = {}
   ): Promise<MaintenanceRecord> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance/{id}/';
+      let url = basePath + '/api/maintenance/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
@@ -362,7 +395,7 @@ export class PlaneService {
     options: IRequestOptions = {}
   ): Promise<MaintenanceRecord> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance/{id}/';
+      let url = basePath + '/api/maintenance/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
@@ -388,7 +421,7 @@ export class PlaneService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance/{id}/';
+      let url = basePath + '/api/maintenance/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
@@ -408,14 +441,16 @@ export class PlaneService {
     params: {
       /** A page number within the paginated result set. */
       page?: number;
+      /** Number of results to return per page. */
+      pageSize?: number;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance-item/';
+      let url = basePath + '/api/maintenance-item/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
-      configs.params = { page: params['page'] };
+      configs.params = { page: params['page'], page_size: params['pageSize'] };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -433,7 +468,7 @@ export class PlaneService {
     options: IRequestOptions = {}
   ): Promise<MaintenanceRecordItem> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance-item/';
+      let url = basePath + '/api/maintenance-item/';
 
       const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
@@ -449,7 +484,7 @@ export class PlaneService {
    */
   static metadataMaintenanceRecordItem(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance-item/';
+      let url = basePath + '/api/maintenance-item/';
 
       const configs: IRequestConfig = getConfigs('options', 'application/json', url, options);
 
@@ -471,7 +506,7 @@ export class PlaneService {
     options: IRequestOptions = {}
   ): Promise<MaintenanceRecordItem> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance-item/{id}/';
+      let url = basePath + '/api/maintenance-item/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
@@ -494,7 +529,7 @@ export class PlaneService {
     options: IRequestOptions = {}
   ): Promise<MaintenanceRecordItem> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance-item/{id}/';
+      let url = basePath + '/api/maintenance-item/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
@@ -519,7 +554,7 @@ export class PlaneService {
     options: IRequestOptions = {}
   ): Promise<MaintenanceRecordItem> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance-item/{id}/';
+      let url = basePath + '/api/maintenance-item/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
@@ -542,7 +577,7 @@ export class PlaneService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/plane/maintenance-item/{id}/';
+      let url = basePath + '/api/maintenance-item/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
@@ -554,9 +589,6 @@ export class PlaneService {
       axios(configs, resolve, reject);
     });
   }
-}
-
-export class BookingService {
   /**
    *
    */
@@ -564,16 +596,18 @@ export class BookingService {
     params: {
       /** A page number within the paginated result set. */
       page?: number;
+      /** Number of results to return per page. */
+      pageSize?: number;
       /** plane */
       plane?: string;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/booking/booking/';
+      let url = basePath + '/api/booking/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
-      configs.params = { page: params['page'], plane: params['plane'] };
+      configs.params = { page: params['page'], page_size: params['pageSize'], plane: params['plane'] };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -591,7 +625,7 @@ export class BookingService {
     options: IRequestOptions = {}
   ): Promise<BookingRecord> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/booking/booking/';
+      let url = basePath + '/api/booking/';
 
       const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
@@ -607,7 +641,7 @@ export class BookingService {
    */
   static metadataBookingRecord(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/booking/booking/';
+      let url = basePath + '/api/booking/';
 
       const configs: IRequestConfig = getConfigs('options', 'application/json', url, options);
 
@@ -631,7 +665,7 @@ export class BookingService {
     options: IRequestOptions = {}
   ): Promise<BookingRecord> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/booking/booking/{id}/';
+      let url = basePath + '/api/booking/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
@@ -657,7 +691,7 @@ export class BookingService {
     options: IRequestOptions = {}
   ): Promise<BookingRecord> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/booking/booking/{id}/';
+      let url = basePath + '/api/booking/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
@@ -685,7 +719,7 @@ export class BookingService {
     options: IRequestOptions = {}
   ): Promise<BookingRecord> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/booking/booking/{id}/';
+      let url = basePath + '/api/booking/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
@@ -711,7 +745,7 @@ export class BookingService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/booking/booking/{id}/';
+      let url = basePath + '/api/booking/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
@@ -724,9 +758,6 @@ export class BookingService {
       axios(configs, resolve, reject);
     });
   }
-}
-
-export class TransactionService {
   /**
    *
    */
@@ -734,14 +765,16 @@ export class TransactionService {
     params: {
       /** A page number within the paginated result set. */
       page?: number;
+      /** Number of results to return per page. */
+      pageSize?: number;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/transaction/transaction/';
+      let url = basePath + '/api/transaction/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
-      configs.params = { page: params['page'] };
+      configs.params = { page: params['page'], page_size: params['pageSize'] };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -759,7 +792,7 @@ export class TransactionService {
     options: IRequestOptions = {}
   ): Promise<TransactionInfo> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/transaction/transaction/';
+      let url = basePath + '/api/transaction/';
 
       const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
@@ -775,7 +808,7 @@ export class TransactionService {
    */
   static metadataTransactionInfo(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/transaction/transaction/';
+      let url = basePath + '/api/transaction/';
 
       const configs: IRequestConfig = getConfigs('options', 'application/json', url, options);
 
@@ -797,7 +830,7 @@ export class TransactionService {
     options: IRequestOptions = {}
   ): Promise<TransactionInfo> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/transaction/transaction/{id}/';
+      let url = basePath + '/api/transaction/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
@@ -820,7 +853,7 @@ export class TransactionService {
     options: IRequestOptions = {}
   ): Promise<TransactionInfo> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/transaction/transaction/{id}/';
+      let url = basePath + '/api/transaction/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
@@ -845,7 +878,7 @@ export class TransactionService {
     options: IRequestOptions = {}
   ): Promise<TransactionInfo> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/transaction/transaction/{id}/';
+      let url = basePath + '/api/transaction/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
@@ -868,7 +901,7 @@ export class TransactionService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/transaction/transaction/{id}/';
+      let url = basePath + '/api/transaction/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
@@ -880,9 +913,6 @@ export class TransactionService {
       axios(configs, resolve, reject);
     });
   }
-}
-
-export class CourseService {
   /**
    *
    */
@@ -890,14 +920,16 @@ export class CourseService {
     params: {
       /** A page number within the paginated result set. */
       page?: number;
+      /** Number of results to return per page. */
+      pageSize?: number;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/course/';
+      let url = basePath + '/api/course/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
-      configs.params = { page: params['page'] };
+      configs.params = { page: params['page'], page_size: params['pageSize'] };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -915,7 +947,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Course> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/course/';
+      let url = basePath + '/api/course/';
 
       const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
@@ -931,7 +963,7 @@ export class CourseService {
    */
   static metadataCourse(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/course/';
+      let url = basePath + '/api/course/';
 
       const configs: IRequestConfig = getConfigs('options', 'application/json', url, options);
 
@@ -953,7 +985,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Course> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/course/{id}/';
+      let url = basePath + '/api/course/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
@@ -976,7 +1008,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Course> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/course/{id}/';
+      let url = basePath + '/api/course/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
@@ -1001,7 +1033,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Course> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/course/{id}/';
+      let url = basePath + '/api/course/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
@@ -1024,7 +1056,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/course/{id}/';
+      let url = basePath + '/api/course/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
@@ -1043,14 +1075,16 @@ export class CourseService {
     params: {
       /** A page number within the paginated result set. */
       page?: number;
+      /** Number of results to return per page. */
+      pageSize?: number;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/comment/';
+      let url = basePath + '/api/comment/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
-      configs.params = { page: params['page'] };
+      configs.params = { page: params['page'], page_size: params['pageSize'] };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -1068,7 +1102,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Comment> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/comment/';
+      let url = basePath + '/api/comment/';
 
       const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
@@ -1084,7 +1118,7 @@ export class CourseService {
    */
   static metadataComment(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/comment/';
+      let url = basePath + '/api/comment/';
 
       const configs: IRequestConfig = getConfigs('options', 'application/json', url, options);
 
@@ -1106,7 +1140,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Comment> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/comment/{id}/';
+      let url = basePath + '/api/comment/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
@@ -1129,7 +1163,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Comment> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/comment/{id}/';
+      let url = basePath + '/api/comment/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
@@ -1154,7 +1188,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Comment> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/comment/{id}/';
+      let url = basePath + '/api/comment/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
@@ -1177,7 +1211,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/comment/{id}/';
+      let url = basePath + '/api/comment/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
@@ -1196,14 +1230,16 @@ export class CourseService {
     params: {
       /** A page number within the paginated result set. */
       page?: number;
+      /** Number of results to return per page. */
+      pageSize?: number;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson/';
+      let url = basePath + '/api/lesson/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
-      configs.params = { page: params['page'] };
+      configs.params = { page: params['page'], page_size: params['pageSize'] };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -1221,7 +1257,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Lesson> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson/';
+      let url = basePath + '/api/lesson/';
 
       const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
@@ -1237,7 +1273,7 @@ export class CourseService {
    */
   static metadataLesson(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson/';
+      let url = basePath + '/api/lesson/';
 
       const configs: IRequestConfig = getConfigs('options', 'application/json', url, options);
 
@@ -1259,7 +1295,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Lesson> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson/{id}/';
+      let url = basePath + '/api/lesson/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
@@ -1282,7 +1318,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Lesson> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson/{id}/';
+      let url = basePath + '/api/lesson/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
@@ -1307,7 +1343,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<Lesson> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson/{id}/';
+      let url = basePath + '/api/lesson/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
@@ -1330,7 +1366,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson/{id}/';
+      let url = basePath + '/api/lesson/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
@@ -1349,14 +1385,16 @@ export class CourseService {
     params: {
       /** A page number within the paginated result set. */
       page?: number;
+      /** Number of results to return per page. */
+      pageSize?: number;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson-history/';
+      let url = basePath + '/api/lesson-history/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
-      configs.params = { page: params['page'] };
+      configs.params = { page: params['page'], page_size: params['pageSize'] };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -1374,7 +1412,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<LessonHistory> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson-history/';
+      let url = basePath + '/api/lesson-history/';
 
       const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
@@ -1390,7 +1428,7 @@ export class CourseService {
    */
   static metadataLessonHistory(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson-history/';
+      let url = basePath + '/api/lesson-history/';
 
       const configs: IRequestConfig = getConfigs('options', 'application/json', url, options);
 
@@ -1412,7 +1450,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<LessonHistory> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson-history/{id}/';
+      let url = basePath + '/api/lesson-history/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
@@ -1435,7 +1473,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<LessonHistory> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson-history/{id}/';
+      let url = basePath + '/api/lesson-history/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
@@ -1460,7 +1498,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<LessonHistory> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson-history/{id}/';
+      let url = basePath + '/api/lesson-history/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
@@ -1483,7 +1521,7 @@ export class CourseService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/course/lesson-history/{id}/';
+      let url = basePath + '/api/lesson-history/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);

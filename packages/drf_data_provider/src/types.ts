@@ -12,3 +12,7 @@ export interface DRFPaginationResponse {
   totalPages: number;
   currentPage: number;
 }
+
+export interface Variable{
+  [key: string]: any;
+}

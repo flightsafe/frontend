@@ -16,6 +16,9 @@ import ShowPlanePage from "../src/pages/planes/ShowPlanes";
 import { authProvider } from "../src/authProvider";
 import "@pankod/refine-antd/dist/styles.min.css";
 import CreateMaintenance from "../src/pages/maintenance/CreateMaintenance";
+import CreatePlanePage from "../src/pages/planes/CreatePlane";
+import BookingList from "../src/pages/generated/create_booking_list";
+import CourseList from "../src/pages/generated/create_course_list";
 
 const API_URL = "http://0.0.0.0:8000/api";
 
@@ -36,10 +39,19 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           name: "plane",
           list: ListPlanesPage,
           show: ShowPlanePage,
+          create: CreatePlanePage,
         },
         {
           name: "maintenance",
           create: CreateMaintenance,
+        },
+        {
+          name: "course",
+          create: CourseList,
+        },
+        {
+          name: "booking",
+          create: BookingList,
         },
       ]}
     >

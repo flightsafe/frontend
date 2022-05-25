@@ -1,23 +1,17 @@
+import { EditFilled, PlusSquareFilled } from "@ant-design/icons";
 import {
-  useShow,
-  useList,
-  useNavigation,
-  useCreate,
-} from "@pankod/refine-core";
-
-import {
+  AntdList,
+  Button,
+  Card,
+  ImageField,
+  PageHeader,
   Show,
   Typography,
-  ImageField,
-  AntdList,
-  PageHeader,
-  Card,
-  CreateButton,
-  Button,
 } from "@pankod/refine-antd";
+import { useList, useNavigation, useShow } from "@pankod/refine-core";
+import { MaintenanceRecord, Plane } from "api-client";
 import qs from "query-string";
-
-import { Plane, MaintenanceRecord } from "api-client";
+import ActionButton from "../../actionButton";
 
 const { Title, Text } = Typography;
 
@@ -42,12 +36,22 @@ export default function ShowPlanePage() {
     },
   });
 
-  const { push } = useNavigation();
-
   const renderItem = (item: MaintenanceRecord) => {
     return (
-      <AntdList.Item>
-        <AntdList.Item.Meta title={item.name} />
+      <AntdList.Item
+        actions={[
+          <ActionButton
+            icon={<EditFilled />}
+            shape="circle"
+            resource="maintenance"
+            action="edit"
+            id={item.id}
+            extraData={{}}
+          />,
+        ]}
+      >
+        <AntdList.Item.Meta title={item.name} description={item.progress} />
+        {item.description}
       </AntdList.Item>
     );
   };
@@ -71,18 +75,25 @@ export default function ShowPlanePage() {
         <PageHeader
           title="Maintenance item"
           extra={[
-            <Button
-              onClick={() =>
-                push(
-                  "/maintenance/create?" + qs.stringify({ plane: record?.id })
-                )
-              }
-            >
-              Create
-            </Button>,
+            <ActionButton
+              icon={<PlusSquareFilled />}
+              shape="default"
+              resource="maintenance"
+              action="create"
+              id={record?.id}
+              extraData={{
+                plane: record?.id,
+              }}
+              title={"Add new maintenance item"}
+            />,
           ]}
         >
-          <AntdList {...maintenanceRecord} renderItem={renderItem} />
+          <AntdList
+            size="large"
+            dataSource={maintenanceRecord.data?.data}
+            loading={maintenanceRecord.isLoading}
+            renderItem={renderItem}
+          />
         </PageHeader>
       </Card>
     </>

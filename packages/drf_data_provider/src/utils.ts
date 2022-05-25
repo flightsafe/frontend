@@ -1,4 +1,5 @@
 import { CrudOperators, CrudSorting, CrudFilters } from "@pankod/refine-core";
+import { Variable } from "./types";
 
 export const mapOperator = (operator: CrudOperators): string => {
   switch (operator) {
@@ -46,4 +47,29 @@ export const generateFilter = (filters?: CrudFilters) => {
   }
 
   return queryFilters;
+};
+
+/**
+ * Get request body for a django rest framework request
+ * @param variables Request variables
+ * @returns Request body, content type
+ */
+export const getRequestBody = (variables: Variable): [Variable, string] => {
+  let useFormData = false;
+  for (const variable of Object.values(variables)) {
+    if (variable instanceof File) {
+      useFormData = true;
+      break;
+    }
+  }
+
+  if (useFormData) {
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(variables)) {
+      formData.append(key, value);
+    }
+    return [formData, "multipart/form-data"];
+  }
+
+  return [variables, "application/json"];
 };

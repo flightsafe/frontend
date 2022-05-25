@@ -1,14 +1,8 @@
 import axios, { AxiosInstance } from "axios";
 import { stringify } from "query-string";
-import {
-  DataProvider,
-  HttpError,
-  CrudOperators,
-  CrudFilters,
-  CrudSorting,
-} from "@pankod/refine-core";
+import { DataProvider, HttpError } from "@pankod/refine-core";
 import { DRFQueryInterface, DRFPaginationResponse } from "./types";
-import { generateFilter, generateSort } from "./utils";
+import { generateFilter, generateSort, getRequestBody } from "./utils";
 
 const axiosInstance = axios.create();
 
@@ -73,9 +67,12 @@ const DrfServer = (
   },
 
   create: async ({ resource, variables }) => {
-    const url = `${apiUrl}/${resource}`;
+    const url = `${apiUrl}/${resource}/`;
+    const [generatedVariables, contentType] = getRequestBody(variables);
 
-    const { data } = await httpClient.post(url, variables);
+    const { data } = await httpClient.post(url, generatedVariables, {
+      headers: { "Content-Type": contentType },
+    });
 
     return {
       data,

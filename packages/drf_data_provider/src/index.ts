@@ -44,6 +44,8 @@ const DrfServer = (
       query.ordering = generatedSort.join(",");
     }
 
+    const rqURL = `${url}?${stringify(query)}`;
+
     const { data } = await httpClient.get<DRFPaginationResponse>(
       `${url}?${stringify(query)}`
     );
@@ -90,10 +92,13 @@ const DrfServer = (
     return { data: response };
   },
 
-  update: async ({ resource, id, variables }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
-
-    const { data } = await httpClient.patch(url, variables);
+  update: async ({ resource, id, variables, metaData }) => {
+    const url = `${apiUrl}/${resource}/${id}/`;
+    const [generatedVariables, contentType] = getRequestBody(variables, true);
+    console.log("generatedVariables", generatedVariables, contentType);
+    const { data } = await httpClient.patch(url, generatedVariables, {
+      headers: { "Content-Type": contentType },
+    });
 
     return {
       data,

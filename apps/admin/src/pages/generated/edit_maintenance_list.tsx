@@ -6,25 +6,26 @@ import {
   useSelect,
   getValueFromEvent,
   Upload,
-  Create,
+  Edit,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
 import React from "react";
 
-export default function CreateMaintenance() {
+export default function EditMaintenance() {
   const { formProps, saveButtonProps, queryResult } = useForm();
 
   const { selectProps: planeSelection } = useSelect({
     resource: "plane",
     optionLabel: "title",
     optionValue: "id",
+    defaultValue: queryResult?.data?.data?.plane?.id,
   });
 
   return (
     //@ts-ignore
-    <Create saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Title" name="title" required={false}>
           <Input.TextArea />
@@ -48,6 +49,6 @@ export default function CreateMaintenance() {
           <Select {...planeSelection} />
         </Form.Item>
       </Form>
-    </Create>
+    </Edit>
   );
 }

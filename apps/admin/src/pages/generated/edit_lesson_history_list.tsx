@@ -6,43 +6,50 @@ import {
   useSelect,
   getValueFromEvent,
   Upload,
-  Create,
+  Edit,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
 import React from "react";
 
-export default function CreateBooking() {
+export default function EditLessonHistory() {
   const { formProps, saveButtonProps, queryResult } = useForm();
 
   const { selectProps: planeSelection } = useSelect({
     resource: "plane",
     optionLabel: "title",
     optionValue: "id",
+    defaultValue: queryResult?.data?.data?.plane?.id,
   });
 
   const { selectProps: lessonSelection } = useSelect({
-    resource: "lessonhistory",
+    resource: "lesson",
     optionLabel: "title",
     optionValue: "id",
+    defaultValue: queryResult?.data?.data?.lesson?.id,
   });
 
-  const { selectProps: userSelection } = useSelect({
+  const { selectProps: studentSelection } = useSelect({
     resource: "user",
     optionLabel: "title",
     optionValue: "id",
+    defaultValue: queryResult?.data?.data?.student?.id,
   });
 
   return (
     //@ts-ignore
-    <Create saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
-        <Form.Item label="Start time" name="start_time" required={true}>
+        <Form.Item label="Start time" name="start_time" required={false}>
           <Input />
         </Form.Item>
 
-        <Form.Item label="End time" name="end_time" required={true}>
+        <Form.Item label="End time" name="end_time" required={false}>
+          <Input />
+        </Form.Item>
+
+        <Form.Item label="Grade" name="grade" required={false}>
           <Input />
         </Form.Item>
 
@@ -54,10 +61,10 @@ export default function CreateBooking() {
           <Select {...lessonSelection} />
         </Form.Item>
 
-        <Form.Item label="User" name={"user"}>
-          <Select {...userSelection} />
+        <Form.Item label="Student" name={"student"}>
+          <Select {...studentSelection} />
         </Form.Item>
       </Form>
-    </Create>
+    </Edit>
   );
 }

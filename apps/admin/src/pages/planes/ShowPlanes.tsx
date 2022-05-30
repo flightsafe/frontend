@@ -39,8 +39,10 @@ export default function ShowPlanePage() {
   const renderItem = (item: MaintenanceRecord) => {
     return (
       <AntdList.Item
+        key={item.id}
         actions={[
           <ActionButton
+            key={item.id}
             icon={<EditFilled />}
             shape="circle"
             resource="maintenance"
@@ -76,6 +78,7 @@ export default function ShowPlanePage() {
           title="Maintenance item"
           extra={[
             <ActionButton
+              key={record?.id}
               icon={<PlusSquareFilled />}
               shape="default"
               resource="maintenance"

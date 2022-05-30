@@ -6,26 +6,28 @@ import {
   useSelect,
   getValueFromEvent,
   Upload,
+  Create,
 } from "@pankod/refine-antd";
-import { Create } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
 import React from "react";
 
-export default function CourseList() {
-  const { formProps, saveButtonProps } = useForm();
+export default function CreateCourse() {
+  const { formProps, saveButtonProps, queryResult } = useForm();
 
   return (
     //@ts-ignore
     <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
-        <Form.Item label="Name" name="name" required={true}>
+        <Form.Item label="Title" name="title" required={true}>
           <Input.TextArea />
         </Form.Item>
+
         <Form.Item label="Description" name="description" required={true}>
           <Input />
         </Form.Item>
+
         <Form.Item label="Cover" name={"cover"} required>
           <Form.Item
             name="cover"

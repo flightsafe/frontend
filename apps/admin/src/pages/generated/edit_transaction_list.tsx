@@ -6,25 +6,26 @@ import {
   useSelect,
   getValueFromEvent,
   Upload,
-  Create,
+  Edit,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
 import React from "react";
 
-export default function CreateTransaction() {
+export default function EditTransaction() {
   const { formProps, saveButtonProps, queryResult } = useForm();
 
   const { selectProps: userSelection } = useSelect({
     resource: "user",
     optionLabel: "title",
     optionValue: "id",
+    defaultValue: queryResult?.data?.data?.user?.id,
   });
 
   return (
     //@ts-ignore
-    <Create saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Title" name="title" required={true}>
           <Select
@@ -52,6 +53,6 @@ export default function CreateTransaction() {
           <Select {...userSelection} />
         </Form.Item>
       </Form>
-    </Create>
+    </Edit>
   );
 }

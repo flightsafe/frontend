@@ -6,25 +6,19 @@ import {
   useSelect,
   getValueFromEvent,
   Upload,
-  Create,
+  Edit,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
 import React from "react";
 
-export default function CreateLesson() {
+export default function EditCourse() {
   const { formProps, saveButtonProps, queryResult } = useForm();
-
-  const { selectProps: courseSelection } = useSelect({
-    resource: "course",
-    optionLabel: "title",
-    optionValue: "id",
-  });
 
   return (
     //@ts-ignore
-    <Create saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Title" name="title" required={true}>
           <Input.TextArea />
@@ -34,10 +28,24 @@ export default function CreateLesson() {
           <Input />
         </Form.Item>
 
-        <Form.Item label="Course" name={"course"}>
-          <Select {...courseSelection} />
+        <Form.Item label="Cover" name={"cover"} required>
+          <Form.Item
+            name="cover"
+            valuePropName="file"
+            getValueFromEvent={getValueFromEvent}
+            noStyle
+          >
+            <Upload.Dragger
+              name="cover"
+              accept="image/png, image/gif, image/jpeg"
+              multiple={false}
+              maxCount={1}
+            >
+              <p className="ant-upload-drag-icon">Drag image here</p>
+            </Upload.Dragger>
+          </Form.Item>
         </Form.Item>
       </Form>
-    </Create>
+    </Edit>
   );
 }

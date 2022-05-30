@@ -15,6 +15,8 @@ export const mapOperator = (operator: CrudOperators): string => {
   }
 };
 
+export const imageFieldMapper = ["image", "cover", "avatar"];
+
 /**
  * Generate a django rest framework query string from a CrudSorting object
  * @param sort
@@ -54,8 +56,14 @@ export const generateFilter = (filters?: CrudFilters) => {
  * @param variables Request variables
  * @returns Request body, content type
  */
-export const getRequestBody = (variables: Variable): [Variable, string] => {
-  let useFormData = false;
+export const getRequestBody = (
+  variables: Variable,
+  forceForm = false
+): [Variable, string] => {
+  let useFormData = forceForm;
+  extraImage(variables);
+  cleanImageField(variables);
+
   for (const variable of Object.values(variables)) {
     if (variable instanceof File) {
       useFormData = true;
@@ -72,4 +80,26 @@ export const getRequestBody = (variables: Variable): [Variable, string] => {
   }
 
   return [variables, "application/json"];
+};
+
+const extraImage = (variables: { [key: string]: any }) => {
+  for (const [key, value] of Object.entries(variables)) {
+    // check if value is a list
+    if (Array.isArray(value)) {
+      // check if the list contains a file
+      if (value[0].originFileObj) {
+        variables[key] = value[0].originFileObj;
+      }
+    }
+  }
+};
+
+const cleanImageField = (variables: { [key: string]: any }) => {
+  for (const [key, value] of Object.entries(variables)) {
+    if (imageFieldMapper.includes(key)) {
+      if (typeof value === "string" && value.startsWith("http")) {
+        delete variables[key];
+      }
+    }
+  }
 };

@@ -6,31 +6,33 @@ import {
   useSelect,
   getValueFromEvent,
   Upload,
-  Create,
+  Edit,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
 import React from "react";
 
-export default function CreateMaintenanceRecordItem() {
+export default function EditMaintenanceRecordItem() {
   const { formProps, saveButtonProps, queryResult } = useForm();
 
   const { selectProps: maintenance_recordSelection } = useSelect({
     resource: "maintenancerecord",
     optionLabel: "title",
     optionValue: "id",
+    defaultValue: queryResult?.data?.data?.maintenance_record?.id,
   });
 
   const { selectProps: operatorSelection } = useSelect({
     resource: "user",
     optionLabel: "title",
     optionValue: "id",
+    defaultValue: queryResult?.data?.data?.operator?.id,
   });
 
   return (
     //@ts-ignore
-    <Create saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Title" name="title" required={true}>
           <Input.TextArea />
@@ -88,6 +90,6 @@ export default function CreateMaintenanceRecordItem() {
           <Select {...operatorSelection} />
         </Form.Item>
       </Form>
-    </Create>
+    </Edit>
   );
 }

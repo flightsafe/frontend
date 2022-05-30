@@ -102,22 +102,22 @@ const sampleData: any = {
 
 nock("https://api.fake-rest.refine.dev:443", { encodedQueryParams: true })
   .get("/posts")
-  .query({ page: 1 })
+  .query({ page: 1, page_size: 10 })
   .reply(200, sampleData);
 
 nock("https://api.fake-rest.refine.dev:443", { encodedQueryParams: true })
   .get("/posts")
-  .query({ page: 1, ordering: "name" })
+  .query({ page: 1, ordering: "name", page_size: 10 })
   .reply(200, sampleData);
 
 nock("https://api.fake-rest.refine.dev:443", { encodedQueryParams: true })
   .get("/posts")
-  .query({ page: 1, ordering: "-name,date" })
+  .query({ page: 1, ordering: "-name,date", page_size: 10 })
   .reply(200, sampleData);
 
 nock("https://api.fake-rest.refine.dev:443", { encodedQueryParams: true })
   .get("/posts")
-  .query({ page: 1, name: "hello", description: "a" })
+  .query({ page: 1, name: "hello", description: "a", page_size: 10 })
   .reply(200, sampleData);
 
 axios.defaults.adapter = require("axios/lib/adapters/http");

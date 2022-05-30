@@ -6,37 +6,40 @@ import {
   useSelect,
   getValueFromEvent,
   Upload,
-  Create,
+  Edit,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
 import React from "react";
 
-export default function CreateBooking() {
+export default function EditBooking() {
   const { formProps, saveButtonProps, queryResult } = useForm();
 
   const { selectProps: planeSelection } = useSelect({
     resource: "plane",
     optionLabel: "title",
     optionValue: "id",
+    defaultValue: queryResult?.data?.data?.plane?.id,
   });
 
   const { selectProps: lessonSelection } = useSelect({
     resource: "lessonhistory",
     optionLabel: "title",
     optionValue: "id",
+    defaultValue: queryResult?.data?.data?.lesson?.id,
   });
 
   const { selectProps: userSelection } = useSelect({
     resource: "user",
     optionLabel: "title",
     optionValue: "id",
+    defaultValue: queryResult?.data?.data?.user?.id,
   });
 
   return (
     //@ts-ignore
-    <Create saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Start time" name="start_time" required={true}>
           <Input />
@@ -58,6 +61,6 @@ export default function CreateBooking() {
           <Select {...userSelection} />
         </Form.Item>
       </Form>
-    </Create>
+    </Edit>
   );
 }

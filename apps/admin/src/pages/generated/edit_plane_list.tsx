@@ -6,19 +6,19 @@ import {
   useSelect,
   getValueFromEvent,
   Upload,
-  Create,
+  Edit,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
 import React from "react";
 
-export default function CreatePlane() {
+export default function EditPlane() {
   const { formProps, saveButtonProps, queryResult } = useForm();
 
   return (
     //@ts-ignore
-    <Create saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Title" name="title" required={true}>
           <Input.TextArea />
@@ -42,6 +42,6 @@ export default function CreatePlane() {
           </Form.Item>
         </Form.Item>
       </Form>
-    </Create>
+    </Edit>
   );
 }

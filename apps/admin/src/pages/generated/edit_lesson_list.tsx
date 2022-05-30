@@ -6,25 +6,26 @@ import {
   useSelect,
   getValueFromEvent,
   Upload,
-  Create,
+  Edit,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
 import React from "react";
 
-export default function CreateLesson() {
+export default function EditLesson() {
   const { formProps, saveButtonProps, queryResult } = useForm();
 
   const { selectProps: courseSelection } = useSelect({
     resource: "course",
     optionLabel: "title",
     optionValue: "id",
+    defaultValue: queryResult?.data?.data?.course?.id,
   });
 
   return (
     //@ts-ignore
-    <Create saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Title" name="title" required={true}>
           <Input.TextArea />
@@ -38,6 +39,6 @@ export default function CreateLesson() {
           <Select {...courseSelection} />
         </Form.Item>
       </Form>
-    </Create>
+    </Edit>
   );
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+# 1.3.0 (2022-05-31)
+
+
+### Features
+
+* use react admin ([#4](https://github.com/flightsafe/frontend/issues/4)) ([63a812f](https://github.com/flightsafe/frontend/commit/63a812fa803b48aa5468cc679e7774cf5c041359))
+
 ## 1.2.1 (2022-05-20)
 
 

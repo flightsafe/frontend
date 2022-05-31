@@ -1,5 +1,12 @@
 # Changelog
 
+# 1.4.0 (2022-05-31)
+
+
+### Features
+
+* add detail page ([#5](https://github.com/flightsafe/frontend/issues/5)) ([987bc46](https://github.com/flightsafe/frontend/commit/987bc46d0017f78ae7305dce6e32a03120ad5944))
+
 # 1.3.0 (2022-05-31)
 
 

@@ -7,7 +7,9 @@ import {
   getValueFromEvent,
   Upload,
   Edit,
+  DatePicker,
 } from "@pankod/refine-antd";
+import dayjs from "dayjs";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
@@ -37,31 +39,37 @@ export default function EditLessonHistory() {
     defaultValue: queryResult?.data?.data?.student?.id,
   });
 
+  const initialValues = {
+    ...formProps.initialValues,
+    start_time: dayjs(formProps.initialValues?.start_time),
+    end_time: dayjs(formProps.initialValues?.end_time),
+  };
+
   return (
     //@ts-ignore
     <Edit saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
+      <Form {...formProps} layout="vertical" initialValues={initialValues}>
         <Form.Item label="Start time" name="start_time" required={false}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
         <Form.Item label="End time" name="end_time" required={false}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
         <Form.Item label="Grade" name="grade" required={false}>
           <Input />
         </Form.Item>
 
-        <Form.Item label="Plane" name={"plane"}>
+        <Form.Item label="Plane" name={"plane"} required={true}>
           <Select {...planeSelection} />
         </Form.Item>
 
-        <Form.Item label="Lesson" name={"lesson"}>
+        <Form.Item label="Lesson" name={"lesson"} required={true}>
           <Select {...lessonSelection} />
         </Form.Item>
 
-        <Form.Item label="Student" name={"student"}>
+        <Form.Item label="Student" name={"student"} required={true}>
           <Select {...studentSelection} />
         </Form.Item>
       </Form>

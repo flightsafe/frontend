@@ -7,6 +7,7 @@ import {
   getValueFromEvent,
   Upload,
   Create,
+  DatePicker,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -44,7 +45,7 @@ export default function CreateMaintenance() {
           />
         </Form.Item>
 
-        <Form.Item label="Plane" name={"plane"}>
+        <Form.Item label="Plane" name={"plane"} required={true}>
           <Select {...planeSelection} />
         </Form.Item>
       </Form>

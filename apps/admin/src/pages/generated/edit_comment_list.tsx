@@ -7,7 +7,9 @@ import {
   getValueFromEvent,
   Upload,
   Edit,
+  DatePicker,
 } from "@pankod/refine-antd";
+import dayjs from "dayjs";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
@@ -30,19 +32,28 @@ export default function EditComment() {
     defaultValue: queryResult?.data?.data?.lesson_history?.id,
   });
 
+  const initialValues = {
+    ...formProps.initialValues,
+    create_at: dayjs(formProps.initialValues?.create_at),
+  };
+
   return (
     //@ts-ignore
     <Edit saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
+      <Form {...formProps} layout="vertical" initialValues={initialValues}>
         <Form.Item label="Comment" name="comment" required={true}>
           <Input />
         </Form.Item>
 
-        <Form.Item label="Author" name={"author"}>
+        <Form.Item label="Author" name={"author"} required={true}>
           <Select {...authorSelection} />
         </Form.Item>
 
-        <Form.Item label="Lesson history" name={"lesson_history"}>
+        <Form.Item
+          label="Lesson history"
+          name={"lesson_history"}
+          required={true}
+        >
           <Select {...lesson_historySelection} />
         </Form.Item>
       </Form>

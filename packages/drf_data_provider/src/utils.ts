@@ -74,7 +74,16 @@ export const getRequestBody = (
   if (useFormData) {
     const formData = new FormData();
     for (const [key, value] of Object.entries(variables)) {
-      formData.append(key, value);
+      if (value instanceof File) {
+        formData.append(key, value);
+      } else if (value === null) {
+        formData.append(key, "");
+      } else if (value.$d) {
+        // format dayjs
+        formData.append(key, value.format());
+      } else {
+        formData.append(key, value);
+      }
     }
     return [formData, "multipart/form-data"];
   }

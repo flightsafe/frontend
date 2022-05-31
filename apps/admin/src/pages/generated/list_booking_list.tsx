@@ -54,12 +54,6 @@ export default function ListBooking() {
         />
 
         <Table.Column
-          dataIndex="user"
-          title="User"
-          render={(value) => <TagField value={value} />}
-        />
-
-        <Table.Column
           dataIndex={"actions"}
           render={(_text, record: any): React.ReactNode => (
             <Space>

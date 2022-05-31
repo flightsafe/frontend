@@ -7,7 +7,9 @@ import {
   getValueFromEvent,
   Upload,
   Edit,
+  DatePicker,
 } from "@pankod/refine-antd";
+import dayjs from "dayjs";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
@@ -23,10 +25,14 @@ export default function EditLesson() {
     defaultValue: queryResult?.data?.data?.course?.id,
   });
 
+  const initialValues = {
+    ...formProps.initialValues,
+  };
+
   return (
     //@ts-ignore
     <Edit saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
+      <Form {...formProps} layout="vertical" initialValues={initialValues}>
         <Form.Item label="Title" name="title" required={true}>
           <Input.TextArea />
         </Form.Item>
@@ -35,7 +41,7 @@ export default function EditLesson() {
           <Input />
         </Form.Item>
 
-        <Form.Item label="Course" name={"course"}>
+        <Form.Item label="Course" name={"course"} required={true}>
           <Select {...courseSelection} />
         </Form.Item>
       </Form>

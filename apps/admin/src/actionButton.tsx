@@ -1,5 +1,5 @@
 import { Button } from "@pankod/refine-antd";
-import { useNavigation } from "@pankod/refine-core";
+import { useDelete, useNavigation } from "@pankod/refine-core";
 import React from "react";
 import qs from "query-string";
 
@@ -11,6 +11,7 @@ interface Props {
   title?: string;
   icon?: React.ReactNode;
   shape: "circle" | "round" | "default";
+  onDone?: () => void;
 }
 
 /**
@@ -19,14 +20,34 @@ interface Props {
  */
 export default function ActionButton(props: Props) {
   const { push } = useNavigation();
+  const { mutateAsync } = useDelete();
+  function onEdit() {
+    let url = `/${props.resource}/${props.action}`;
+    if (props.id) {
+      url += `/${props.id}`;
+    }
+    push(url + "?" + qs.stringify(props.extraData));
+  }
+
+  async function onDelete() {
+    await mutateAsync({
+      resource: props.resource,
+      id: props.id as any,
+    });
+    if (props.onDone) {
+      props.onDone();
+    }
+  }
+
   return (
     <Button
       onClick={() => {
-        let url = `/${props.resource}/${props.action}`;
-        if (props.id) {
-          url += `/${props.id}`;
+        if (props.action === "edit") {
+          onEdit();
         }
-        push(url + "?" + qs.stringify(props.extraData));
+        if (props.action === "delete") {
+          onDelete();
+        }
       }}
       icon={props.icon}
       shape={props.shape}

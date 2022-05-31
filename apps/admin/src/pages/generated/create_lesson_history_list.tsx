@@ -7,6 +7,7 @@ import {
   getValueFromEvent,
   Upload,
   Create,
+  DatePicker,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -39,26 +40,26 @@ export default function CreateLessonHistory() {
     <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Start time" name="start_time" required={false}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
         <Form.Item label="End time" name="end_time" required={false}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
         <Form.Item label="Grade" name="grade" required={false}>
           <Input />
         </Form.Item>
 
-        <Form.Item label="Plane" name={"plane"}>
+        <Form.Item label="Plane" name={"plane"} required={true}>
           <Select {...planeSelection} />
         </Form.Item>
 
-        <Form.Item label="Lesson" name={"lesson"}>
+        <Form.Item label="Lesson" name={"lesson"} required={true}>
           <Select {...lessonSelection} />
         </Form.Item>
 
-        <Form.Item label="Student" name={"student"}>
+        <Form.Item label="Student" name={"student"} required={true}>
           <Select {...studentSelection} />
         </Form.Item>
       </Form>

@@ -7,7 +7,9 @@ import {
   getValueFromEvent,
   Upload,
   Edit,
+  DatePicker,
 } from "@pankod/refine-antd";
+import dayjs from "dayjs";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
@@ -23,10 +25,16 @@ export default function EditMaintenance() {
     defaultValue: queryResult?.data?.data?.plane?.id,
   });
 
+  const initialValues = {
+    ...formProps.initialValues,
+    start_time: dayjs(formProps.initialValues?.start_time),
+    end_time: dayjs(formProps.initialValues?.end_time),
+  };
+
   return (
     //@ts-ignore
     <Edit saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
+      <Form {...formProps} layout="vertical" initialValues={initialValues}>
         <Form.Item label="Title" name="title" required={false}>
           <Input.TextArea />
         </Form.Item>
@@ -45,7 +53,7 @@ export default function EditMaintenance() {
           />
         </Form.Item>
 
-        <Form.Item label="Plane" name={"plane"}>
+        <Form.Item label="Plane" name={"plane"} required={true}>
           <Select {...planeSelection} />
         </Form.Item>
       </Form>

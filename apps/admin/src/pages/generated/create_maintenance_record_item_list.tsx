@@ -7,6 +7,7 @@ import {
   getValueFromEvent,
   Upload,
   Create,
+  DatePicker,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -40,7 +41,7 @@ export default function CreateMaintenanceRecordItem() {
           <Input />
         </Form.Item>
 
-        <Form.Item label="Image" name={"image"} required>
+        <Form.Item label="Image" name={"image"} required={false}>
           <Form.Item
             name="image"
             valuePropName="file"
@@ -59,15 +60,15 @@ export default function CreateMaintenanceRecordItem() {
         </Form.Item>
 
         <Form.Item label="Start time" name="start_time" required={false}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
         <Form.Item label="End time" name="end_time" required={false}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
         <Form.Item label="Expire at" name="expire_at" required={false}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
         <Form.Item label="Status" name="status" required={false}>
@@ -80,11 +81,15 @@ export default function CreateMaintenanceRecordItem() {
           />
         </Form.Item>
 
-        <Form.Item label="Maintenance record" name={"maintenance_record"}>
+        <Form.Item
+          label="Maintenance record"
+          name={"maintenance_record"}
+          required={true}
+        >
           <Select {...maintenance_recordSelection} />
         </Form.Item>
 
-        <Form.Item label="Operator" name={"operator"}>
+        <Form.Item label="Operator" name={"operator"} required={false}>
           <Select {...operatorSelection} />
         </Form.Item>
       </Form>

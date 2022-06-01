@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.1 (2022-06-01)
+
+
+### Bug Fixes
+
+* add readme ([#8](https://github.com/flightsafe/frontend/issues/8)) ([d71d94c](https://github.com/flightsafe/frontend/commit/d71d94c91c3cf58fd0deaa69375792eab8e55b3f))
+
 # 1.5.0 (2022-06-01)
 
 

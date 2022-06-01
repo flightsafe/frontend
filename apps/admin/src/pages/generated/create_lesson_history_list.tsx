@@ -8,6 +8,7 @@ import {
   Upload,
   Create,
   DatePicker,
+  Breadcrumb,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -29,15 +30,12 @@ export default function CreateLessonHistory() {
     optionValue: "id",
   });
 
-  const { selectProps: studentSelection } = useSelect({
-    resource: "user",
-    optionLabel: "title",
-    optionValue: "id",
-  });
-
   return (
     //@ts-ignore
-    <Create saveButtonProps={saveButtonProps}>
+    <Create
+      saveButtonProps={saveButtonProps}
+      pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item label="Start time" name="start_time" required={false}>
           <DatePicker showTime />
@@ -57,10 +55,6 @@ export default function CreateLessonHistory() {
 
         <Form.Item label="Lesson" name={"lesson"} required={true}>
           <Select {...lessonSelection} />
-        </Form.Item>
-
-        <Form.Item label="Student" name={"student"} required={true}>
-          <Select {...studentSelection} />
         </Form.Item>
       </Form>
     </Create>

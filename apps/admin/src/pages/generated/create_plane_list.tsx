@@ -8,6 +8,7 @@ import {
   Upload,
   Create,
   DatePicker,
+  Breadcrumb,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -19,7 +20,10 @@ export default function CreatePlane() {
 
   return (
     //@ts-ignore
-    <Create saveButtonProps={saveButtonProps}>
+    <Create
+      saveButtonProps={saveButtonProps}
+      pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item label="Title" name="title" required={true}>
           <Input.TextArea />

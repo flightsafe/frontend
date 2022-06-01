@@ -1,4 +1,4 @@
-import { Show, Typography, ImageField } from "@pankod/refine-antd";
+import { Show, Typography, ImageField, Breadcrumb } from "@pankod/refine-antd";
 import { useShow, useOne } from "@pankod/refine-core";
 
 const { Title, Text } = Typography;
@@ -30,7 +30,10 @@ export default function DetailBooking() {
 
   return (
     //@ts-ignore
-    <Show isLoading={isLoading}>
+    <Show
+      isLoading={isLoading}
+      pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
+    >
       <Title level={5}>ID</Title>
       <Text>{record?.id}</Text>
 

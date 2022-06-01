@@ -10,6 +10,7 @@ import {
   EditButton,
   DeleteButton,
   Space,
+  Breadcrumb,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -21,7 +22,7 @@ export default function ListLessonHistory() {
 
   return (
     //@ts-ignore
-    <List>
+    <List pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}>
       <Table {...tableProps} rowKey="id">
         <Table.Column
           dataIndex="id"
@@ -56,12 +57,6 @@ export default function ListLessonHistory() {
         <Table.Column
           dataIndex="lesson"
           title="Lesson"
-          render={(value) => <TagField value={value} />}
-        />
-
-        <Table.Column
-          dataIndex="student"
-          title="Student"
           render={(value) => <TagField value={value} />}
         />
 

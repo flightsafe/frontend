@@ -8,6 +8,7 @@ import {
   Upload,
   Edit,
   DatePicker,
+  Breadcrumb,
 } from "@pankod/refine-antd";
 import dayjs from "dayjs";
 
@@ -33,7 +34,10 @@ export default function EditMaintenance() {
 
   return (
     //@ts-ignore
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit
+      saveButtonProps={saveButtonProps}
+      pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
+    >
       <Form {...formProps} layout="vertical" initialValues={initialValues}>
         <Form.Item label="Title" name="title" required={false}>
           <Input.TextArea />

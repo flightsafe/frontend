@@ -50,10 +50,10 @@ importers:
       '@mui/material': ^5.7.0
       '@mui/system': ^5.7.0
       '@mui/x-data-grid': ^5.11.0
-      '@pankod/refine-antd': 3.22.0
-      '@pankod/refine-core': 3.22.0
-      '@pankod/refine-nextjs-router': 3.22.0
-      '@pankod/refine-simple-rest': 3.22.0
+      '@pankod/refine-antd': 3.23.0
+      '@pankod/refine-core': 3.23.0
+      '@pankod/refine-nextjs-router': 3.22.1
+      '@pankod/refine-simple-rest': 3.22.1
       '@types/js-cookie': ^3.0.2
       '@types/node': 17.0.33
       '@types/react': 18.0.9
@@ -95,10 +95,10 @@ importers:
       '@mui/material': 5.8.1_4xriuibr7qayay6mzcpq5f43me
       '@mui/system': 5.8.1_2f7y4c3dlygqpuszd3d43oslwi
       '@mui/x-data-grid': 5.11.1_rvprzia5f55w7s4zdcwshjj3ze
-      '@pankod/refine-antd': 3.22.0_ohobp6rpsmerwlq5ipwfh5yigy
-      '@pankod/refine-core': 3.22.0_ef5jwxihqo6n7gxfmzogljlgcm
-      '@pankod/refine-nextjs-router': 3.22.0_2mgcgz5qhsdxw4fgpqzqeafmkq
-      '@pankod/refine-simple-rest': 3.22.0_ef5jwxihqo6n7gxfmzogljlgcm
+      '@pankod/refine-antd': 3.23.0_ohobp6rpsmerwlq5ipwfh5yigy
+      '@pankod/refine-core': 3.23.0_ef5jwxihqo6n7gxfmzogljlgcm
+      '@pankod/refine-nextjs-router': 3.22.1_2mgcgz5qhsdxw4fgpqzqeafmkq
+      '@pankod/refine-simple-rest': 3.22.1_ef5jwxihqo6n7gxfmzogljlgcm
       '@types/js-cookie': 3.0.2
       api-client: link:../../packages/api_client
       common: link:../../packages/common
@@ -2009,14 +2009,14 @@ packages:
       '@octokit/openapi-types': 11.2.0
     dev: true
 
-  /@pankod/refine-antd/3.22.0_ohobp6rpsmerwlq5ipwfh5yigy:
-    resolution: {integrity: sha512-uW5YH5o70/7CjmQE+VUS9dM29AWwa0qt755xh1UhLEkLJsr3P9/eI7D5rf/A0VMXU+9E5YMZizElpyoOZ1VViQ==}
+  /@pankod/refine-antd/3.23.0_ohobp6rpsmerwlq5ipwfh5yigy:
+    resolution: {integrity: sha512-rNcWzRuFr65xIpB7YqlL4TbO7DutQzPzlfeOtRVQfZI9oayaz6HNSqfM3GqpAIZonElESxeYpxY59hkyvcn7Mw==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
       react-dom: ^17.0.0 || ^18.0.0
     dependencies:
       '@ant-design/icons': 4.7.0_ef5jwxihqo6n7gxfmzogljlgcm
-      '@pankod/refine-core': 3.22.0_ef5jwxihqo6n7gxfmzogljlgcm
+      '@pankod/refine-core': 3.23.0_ef5jwxihqo6n7gxfmzogljlgcm
       antd: 4.20.7_ef5jwxihqo6n7gxfmzogljlgcm
       dayjs: 1.11.2
       react: 18.1.0
@@ -2053,15 +2053,36 @@ packages:
       - react-native
     dev: false
 
-  /@pankod/refine-nextjs-router/3.22.0_2mgcgz5qhsdxw4fgpqzqeafmkq:
-    resolution: {integrity: sha512-7Kq+Mv9fNYvTQz5cWZ4Zai1kA+YePeXqE1OSvi1rUZQ1+Zc6xGrqfrpDEw+96h3CDQ4F11ElvCg4fyANlvEdIA==}
+  /@pankod/refine-core/3.23.0_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-QypGoY9vZKsm+6+MnF5iQcRwHBmSuyA/7axeDzjr9M/Re+TuqpB/0sP5Rb2yEB2dGZ6RPBSboNdzrl6QFasFpw==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    dependencies:
+      export-to-csv-fix-source-map: 0.2.1
+      humanize-string: 2.1.0
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      papaparse: 5.3.2
+      pluralize: 8.0.0
+      qs: 6.10.3
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+      react-query: 3.39.0_ef5jwxihqo6n7gxfmzogljlgcm
+      tslib: 2.4.0
+    transitivePeerDependencies:
+      - react-native
+    dev: false
+
+  /@pankod/refine-nextjs-router/3.22.1_2mgcgz5qhsdxw4fgpqzqeafmkq:
+    resolution: {integrity: sha512-c1n/b8a2+B6qymCKW95vLEFZ5CPqnUEXqUr9CONIjUbIaFVvw6/tvUxb3ixB8rij0cGbghEhzFZEgIgU6VZhpA==}
     engines: {node: '>=10'}
     peerDependencies:
       next: '*'
       react: ^17.0.0 || ^18.0.0
       react-dom: ^17.0.0 || ^18.0.0
     dependencies:
-      '@pankod/refine-core': 3.22.0_ef5jwxihqo6n7gxfmzogljlgcm
+      '@pankod/refine-core': 3.23.0_ef5jwxihqo6n7gxfmzogljlgcm
       next: 12.1.6_meqots7chixgorgypqt53y4jsy
       qs: 6.10.3
       react: 18.1.0
@@ -2070,11 +2091,11 @@ packages:
       - react-native
     dev: false
 
-  /@pankod/refine-simple-rest/3.22.0_ef5jwxihqo6n7gxfmzogljlgcm:
-    resolution: {integrity: sha512-pIch/mEKDyb/8jMRAkxCYkjDfPQAuQUtYXHGJh3JAgng/AFw67OPlrclPYTnqspn5zb4qmUtTZfzlxZfWqQg5Q==}
+  /@pankod/refine-simple-rest/3.22.1_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-uthXb5q3PbWnc/89MRyhg88rotU1Fao/SJwwsmhEte0P1EW5E4azhSKxKGdtOuGH9bexmoxSx1gw1HQWwwjyJw==}
     engines: {node: '>=10'}
     dependencies:
-      '@pankod/refine-core': 3.22.0_ef5jwxihqo6n7gxfmzogljlgcm
+      '@pankod/refine-core': 3.23.0_ef5jwxihqo6n7gxfmzogljlgcm
       axios: 0.21.4
       query-string: 7.1.1
     transitivePeerDependencies:
@@ -7169,7 +7190,7 @@ packages:
     dev: false
 
   /mdurl/1.0.1:
-    resolution: {integrity: sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=}
+    resolution: {integrity: sha512-/sKlQJCBYVY9Ers9hqzKou4H6V5UWc/M59TH2dvkt+84itfnq7uFOMLpOiOS4ujvHP4etln18fmIxA5R5fll0g==}
     dev: false
 
   /memoize-one/6.0.0:

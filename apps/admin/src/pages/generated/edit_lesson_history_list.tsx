@@ -8,6 +8,7 @@ import {
   Upload,
   Edit,
   DatePicker,
+  Breadcrumb,
 } from "@pankod/refine-antd";
 import dayjs from "dayjs";
 
@@ -32,13 +33,6 @@ export default function EditLessonHistory() {
     defaultValue: queryResult?.data?.data?.lesson?.id,
   });
 
-  const { selectProps: studentSelection } = useSelect({
-    resource: "user",
-    optionLabel: "title",
-    optionValue: "id",
-    defaultValue: queryResult?.data?.data?.student?.id,
-  });
-
   const initialValues = {
     ...formProps.initialValues,
     start_time: dayjs(formProps.initialValues?.start_time),
@@ -47,7 +41,10 @@ export default function EditLessonHistory() {
 
   return (
     //@ts-ignore
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit
+      saveButtonProps={saveButtonProps}
+      pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
+    >
       <Form {...formProps} layout="vertical" initialValues={initialValues}>
         <Form.Item label="Start time" name="start_time" required={false}>
           <DatePicker showTime />
@@ -67,10 +64,6 @@ export default function EditLessonHistory() {
 
         <Form.Item label="Lesson" name={"lesson"} required={true}>
           <Select {...lessonSelection} />
-        </Form.Item>
-
-        <Form.Item label="Student" name={"student"} required={true}>
-          <Select {...studentSelection} />
         </Form.Item>
       </Form>
     </Edit>

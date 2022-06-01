@@ -24,7 +24,7 @@ export default function CreateMaintenance() {
 
   const { selectProps } = useSelect<Plane>({
     resource: "plane",
-    optionLabel: "name",
+    optionLabel: "title",
     optionValue: "id",
     defaultValue: result.id,
   });

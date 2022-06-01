@@ -1,5 +1,12 @@
 # Changelog
 
+# 1.6.0 (2022-06-01)
+
+
+### Features
+
+* add breadcrumb support ([#7](https://github.com/flightsafe/frontend/issues/7)) ([f46b7dd](https://github.com/flightsafe/frontend/commit/f46b7ddeb5f31bd47c5093a955e764c45674aa48))
+
 # 1.5.0 (2022-06-01)
 
 

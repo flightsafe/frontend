@@ -10,6 +10,7 @@ import {
   EditButton,
   DeleteButton,
   Space,
+  Breadcrumb,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -21,7 +22,7 @@ export default function ListMaintenanceRecordItem() {
 
   return (
     //@ts-ignore
-    <List>
+    <List pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}>
       <Table {...tableProps} rowKey="id">
         <Table.Column
           dataIndex="id"

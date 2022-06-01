@@ -8,6 +8,7 @@ import {
   Upload,
   Create,
   DatePicker,
+  Breadcrumb,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -31,7 +32,10 @@ export default function CreateComment() {
 
   return (
     //@ts-ignore
-    <Create saveButtonProps={saveButtonProps}>
+    <Create
+      saveButtonProps={saveButtonProps}
+      pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item label="Comment" name="comment" required={true}>
           <Input />

@@ -8,6 +8,7 @@ import {
   Upload,
   Edit,
   DatePicker,
+  Breadcrumb,
 } from "@pankod/refine-antd";
 import dayjs from "dayjs";
 
@@ -39,7 +40,10 @@ export default function EditComment() {
 
   return (
     //@ts-ignore
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit
+      saveButtonProps={saveButtonProps}
+      pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
+    >
       <Form {...formProps} layout="vertical" initialValues={initialValues}>
         <Form.Item label="Comment" name="comment" required={true}>
           <Input />

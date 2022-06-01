@@ -8,6 +8,7 @@ import {
   Upload,
   Edit,
   DatePicker,
+  Breadcrumb,
 } from "@pankod/refine-antd";
 import dayjs from "dayjs";
 
@@ -40,7 +41,10 @@ export default function EditBooking() {
 
   return (
     //@ts-ignore
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit
+      saveButtonProps={saveButtonProps}
+      pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
+    >
       <Form {...formProps} layout="vertical" initialValues={initialValues}>
         <Form.Item label="Start time" name="start_time" required={true}>
           <DatePicker showTime />

@@ -92,7 +92,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           show: DetailLesson,
         },
         {
-          name: "lesson-history",
+          name: "lessonhistory",
           create: CreateLessonHistory,
           edit: EditLessonHistory,
           show: DetailLessonHistory,

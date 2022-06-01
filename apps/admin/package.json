@@ -38,7 +38,14 @@
     "nookies": "2.5.2",
     "next-compose-plugins": "2.2.1",
     "drf-data-provider": "workspace:*",
-    "@ant-design/icons": "4.7.0"
+    "@ant-design/icons": "4.7.0",
+    "@devexpress/dx-react-core": "3.0.3",
+    "@devexpress/dx-react-scheduler": "3.0.3",
+    "@devexpress/dx-react-scheduler-material-ui": "3.0.3",
+    "@devexpress/dx-scheduler-core": "3.0.3",
+    "@devexpress/dx-core": "3.0.3",
+    "moment": "2.29.3",
+    "dayjs": "1.11.2"
   },
   "devDependencies": {
     "@types/node": "17.0.33",
@@ -48,5 +55,8 @@
     "eslint-config-next": "12.1.6",
     "typescript": "4.6.4",
     "next-transpile-modules": "^9.0.0"
+  },
+  "resolutions": {
+    "dayjs": "1.10.7"
   }
 }

@@ -7,6 +7,7 @@ import {
   getValueFromEvent,
   Upload,
   Create,
+  DatePicker,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -34,7 +35,7 @@ export default function CreateLesson() {
           <Input />
         </Form.Item>
 
-        <Form.Item label="Course" name={"course"}>
+        <Form.Item label="Course" name={"course"} required={true}>
           <Select {...courseSelection} />
         </Form.Item>
       </Form>

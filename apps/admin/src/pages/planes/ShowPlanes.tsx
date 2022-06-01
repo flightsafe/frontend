@@ -1,22 +1,20 @@
 import { EditFilled, PlusSquareFilled } from "@ant-design/icons";
 import {
   AntdList,
-  Button,
   Card,
   ImageField,
   PageHeader,
   Show,
   Typography,
 } from "@pankod/refine-antd";
-import { useList, useNavigation, useShow } from "@pankod/refine-core";
-import { MaintenanceRecord, Plane } from "api-client";
-import qs from "query-string";
+import { useList, useShow } from "@pankod/refine-core";
+import { MaintenanceRecord, PlaneDetail } from "api-client";
 import ActionButton from "../../actionButton";
 
 const { Title, Text } = Typography;
 
 export default function ShowPlanePage() {
-  const { queryResult } = useShow<Plane>();
+  const { queryResult } = useShow<PlaneDetail>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
 
@@ -52,7 +50,7 @@ export default function ShowPlanePage() {
           />,
         ]}
       >
-        <AntdList.Item.Meta title={item.name} description={item.progress} />
+        <AntdList.Item.Meta title={item.title} description={item.progress} />
         {item.description}
       </AntdList.Item>
     );
@@ -63,7 +61,7 @@ export default function ShowPlanePage() {
       {/** @ts-ignore */}
       <Show isLoading={isLoading}>
         <Title level={5}>Title</Title>
-        <Text>{record?.name}</Text>
+        <Text>{record?.title}</Text>
         <Title level={5}>Description</Title>
         <Text>
           <Text>{record?.description}</Text>

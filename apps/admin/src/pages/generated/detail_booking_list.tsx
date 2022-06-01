@@ -28,14 +28,6 @@ export default function DetailBooking() {
     },
   });
 
-  const { data: userSelection } = useOne({
-    resource: "user",
-    id: record?.user,
-    queryOptions: {
-      enabled: !!record?.user,
-    },
-  });
-
   return (
     //@ts-ignore
     <Show isLoading={isLoading}>
@@ -53,9 +45,6 @@ export default function DetailBooking() {
 
       <Title level={5}>Lesson</Title>
       <Text>{lessonSelection?.data?.title}</Text>
-
-      <Title level={5}>User</Title>
-      <Text>{userSelection?.data?.title}</Text>
     </Show>
   );
 }

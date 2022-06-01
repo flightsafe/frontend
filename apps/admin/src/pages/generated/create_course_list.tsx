@@ -7,6 +7,7 @@ import {
   getValueFromEvent,
   Upload,
   Create,
+  DatePicker,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -28,7 +29,7 @@ export default function CreateCourse() {
           <Input />
         </Form.Item>
 
-        <Form.Item label="Cover" name={"cover"} required>
+        <Form.Item label="Cover" name={"cover"} required={false}>
           <Form.Item
             name="cover"
             valuePropName="file"

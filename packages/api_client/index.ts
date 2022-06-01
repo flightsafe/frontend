@@ -90,10 +90,12 @@ export class ApiService {
       page?: number;
       /** Number of results to return per page. */
       pageSize?: number;
-      /** name */
-      name?: string;
+      /** title */
+      title?: string;
       /** description */
       description?: string;
+      /** id */
+      id?: string;
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
@@ -104,8 +106,9 @@ export class ApiService {
       configs.params = {
         page: params['page'],
         page_size: params['pageSize'],
-        name: params['name'],
-        description: params['description']
+        title: params['title'],
+        description: params['description'],
+        id: params['id']
       };
 
       /** 适配ios13，get请求不允许带body */
@@ -156,21 +159,20 @@ export class ApiService {
    */
   static retrievePlane(
     params: {
-      /** A unique integer value identifying this plane. */
-      id: string;
-      /** name */
-      name?: string;
+      /** id */
+      id?: string;
+      /** title */
+      title?: string;
       /** description */
       description?: string;
     } = {} as any,
     options: IRequestOptions = {}
-  ): Promise<Plane> {
+  ): Promise<PlaneDetail> {
     return new Promise((resolve, reject) => {
       let url = basePath + '/api/plane/{id}/';
-      url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
-      configs.params = { name: params['name'], description: params['description'] };
+      configs.params = { id: params['id'], title: params['title'], description: params['description'] };
 
       /** 适配ios13，get请求不允许带body */
 
@@ -182,10 +184,10 @@ export class ApiService {
    */
   static updatePlane(
     params: {
-      /** A unique integer value identifying this plane. */
-      id: string;
-      /** name */
-      name?: string;
+      /** id */
+      id?: string;
+      /** title */
+      title?: string;
       /** description */
       description?: string;
       /** requestBody */
@@ -195,10 +197,9 @@ export class ApiService {
   ): Promise<Plane> {
     return new Promise((resolve, reject) => {
       let url = basePath + '/api/plane/{id}/';
-      url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
-      configs.params = { name: params['name'], description: params['description'] };
+      configs.params = { id: params['id'], title: params['title'], description: params['description'] };
 
       let data = params.body;
 
@@ -212,10 +213,10 @@ export class ApiService {
    */
   static partialUpdatePlane(
     params: {
-      /** A unique integer value identifying this plane. */
-      id: string;
-      /** name */
-      name?: string;
+      /** id */
+      id?: string;
+      /** title */
+      title?: string;
       /** description */
       description?: string;
       /** requestBody */
@@ -225,10 +226,9 @@ export class ApiService {
   ): Promise<Plane> {
     return new Promise((resolve, reject) => {
       let url = basePath + '/api/plane/{id}/';
-      url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
-      configs.params = { name: params['name'], description: params['description'] };
+      configs.params = { id: params['id'], title: params['title'], description: params['description'] };
 
       let data = params.body;
 
@@ -242,10 +242,10 @@ export class ApiService {
    */
   static destroyPlane(
     params: {
-      /** A unique integer value identifying this plane. */
-      id: string;
-      /** name */
-      name?: string;
+      /** id */
+      id?: string;
+      /** title */
+      title?: string;
       /** description */
       description?: string;
     } = {} as any,
@@ -253,10 +253,9 @@ export class ApiService {
   ): Promise<any> {
     return new Promise((resolve, reject) => {
       let url = basePath + '/api/plane/{id}/';
-      url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
-      configs.params = { name: params['name'], description: params['description'] };
+      configs.params = { id: params['id'], title: params['title'], description: params['description'] };
 
       let data = null;
 
@@ -1391,7 +1390,7 @@ export class ApiService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/api/lesson-history/';
+      let url = basePath + '/api/lessonhistory/';
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
       configs.params = { page: params['page'], page_size: params['pageSize'] };
@@ -1412,7 +1411,7 @@ export class ApiService {
     options: IRequestOptions = {}
   ): Promise<LessonHistory> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/api/lesson-history/';
+      let url = basePath + '/api/lessonhistory/';
 
       const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
 
@@ -1428,7 +1427,7 @@ export class ApiService {
    */
   static metadataLessonHistory(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/api/lesson-history/';
+      let url = basePath + '/api/lessonhistory/';
 
       const configs: IRequestConfig = getConfigs('options', 'application/json', url, options);
 
@@ -1450,7 +1449,7 @@ export class ApiService {
     options: IRequestOptions = {}
   ): Promise<LessonHistory> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/api/lesson-history/{id}/';
+      let url = basePath + '/api/lessonhistory/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
@@ -1473,7 +1472,7 @@ export class ApiService {
     options: IRequestOptions = {}
   ): Promise<LessonHistory> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/api/lesson-history/{id}/';
+      let url = basePath + '/api/lessonhistory/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
@@ -1498,7 +1497,7 @@ export class ApiService {
     options: IRequestOptions = {}
   ): Promise<LessonHistory> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/api/lesson-history/{id}/';
+      let url = basePath + '/api/lessonhistory/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
@@ -1521,7 +1520,162 @@ export class ApiService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/api/lesson-history/{id}/';
+      let url = basePath + '/api/lessonhistory/{id}/';
+      url = url.replace('{id}', params['id'] + '');
+
+      const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
+
+      let data = null;
+
+      configs.data = data;
+
+      axios(configs, resolve, reject);
+    });
+  }
+  /**
+   *
+   */
+  static listUsers(
+    params: {
+      /** A page number within the paginated result set. */
+      page?: number;
+      /** Number of results to return per page. */
+      pageSize?: number;
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + '/api/user/';
+
+      const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+      configs.params = { page: params['page'], page_size: params['pageSize'] };
+
+      /** 适配ios13，get请求不允许带body */
+
+      axios(configs, resolve, reject);
+    });
+  }
+  /**
+   *
+   */
+  static createUser(
+    params: {
+      /** requestBody */
+      body?: User;
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<User> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + '/api/user/';
+
+      const configs: IRequestConfig = getConfigs('post', 'multipart/form-data', url, options);
+
+      let data = params.body;
+
+      configs.data = data;
+
+      axios(configs, resolve, reject);
+    });
+  }
+  /**
+   *
+   */
+  static metadataUser(options: IRequestOptions = {}): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + '/api/user/';
+
+      const configs: IRequestConfig = getConfigs('options', 'application/json', url, options);
+
+      let data = null;
+
+      configs.data = data;
+
+      axios(configs, resolve, reject);
+    });
+  }
+  /**
+   *
+   */
+  static retrieveUser(
+    params: {
+      /** A unique integer value identifying this user. */
+      id: string;
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<User> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + '/api/user/{id}/';
+      url = url.replace('{id}', params['id'] + '');
+
+      const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+
+      /** 适配ios13，get请求不允许带body */
+
+      axios(configs, resolve, reject);
+    });
+  }
+  /**
+   *
+   */
+  static updateUser(
+    params: {
+      /** A unique integer value identifying this user. */
+      id: string;
+      /** requestBody */
+      body?: User;
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<User> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + '/api/user/{id}/';
+      url = url.replace('{id}', params['id'] + '');
+
+      const configs: IRequestConfig = getConfigs('put', 'multipart/form-data', url, options);
+
+      let data = params.body;
+
+      configs.data = data;
+
+      axios(configs, resolve, reject);
+    });
+  }
+  /**
+   *
+   */
+  static partialUpdateUser(
+    params: {
+      /** A unique integer value identifying this user. */
+      id: string;
+      /** requestBody */
+      body?: User;
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<User> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + '/api/user/{id}/';
+      url = url.replace('{id}', params['id'] + '');
+
+      const configs: IRequestConfig = getConfigs('patch', 'multipart/form-data', url, options);
+
+      let data = params.body;
+
+      configs.data = data;
+
+      axios(configs, resolve, reject);
+    });
+  }
+  /**
+   *
+   */
+  static destroyUser(
+    params: {
+      /** A unique integer value identifying this user. */
+      id: string;
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + '/api/user/{id}/';
       url = url.replace('{id}', params['id'] + '');
 
       const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
@@ -1619,7 +1773,27 @@ export interface Plane {
   id?: number;
 
   /**  */
-  name: string;
+  title: string;
+
+  /**  */
+  image: string;
+
+  /**  */
+  created_time?: Date;
+
+  /**  */
+  updated_time?: Date;
+}
+
+export interface PlaneDetail {
+  /**  */
+  id?: number;
+
+  /**  */
+  records?: object[];
+
+  /**  */
+  title: string;
 
   /**  */
   description: string;
@@ -1648,7 +1822,7 @@ export interface MaintenanceRecord {
   status?: string;
 
   /**  */
-  name?: string;
+  title?: string;
 
   /** Maintenance record description */
   description: string;
@@ -1658,9 +1832,6 @@ export interface MaintenanceRecord {
 
   /**  */
   plane: number;
-
-  /**  */
-  author?: number;
 }
 
 export interface MaintenanceRecordDetail {
@@ -1683,7 +1854,7 @@ export interface MaintenanceRecordDetail {
   plane_name?: string;
 
   /**  */
-  name?: string;
+  title?: string;
 
   /** Maintenance record description */
   description: string;
@@ -1703,7 +1874,7 @@ export interface MaintenanceRecordItem {
   id?: number;
 
   /**  */
-  name: string;
+  title: string;
 
   /**  */
   description: string;
@@ -1735,6 +1906,9 @@ export interface BookingRecord {
   id?: number;
 
   /**  */
+  plane_name?: string;
+
+  /**  */
   start_time: Date;
 
   /**  */
@@ -1755,7 +1929,7 @@ export interface TransactionInfo {
   id?: number;
 
   /**  */
-  name: EnumTransactionInfoName;
+  title: EnumTransactionInfoTitle;
 
   /** Transaction details */
   details?: object;
@@ -1772,7 +1946,7 @@ export interface Course {
   id?: number;
 
   /**  */
-  name: string;
+  title: string;
 
   /**  */
   description: string;
@@ -1803,7 +1977,7 @@ export interface Lesson {
   id?: number;
 
   /**  */
-  name: string;
+  title: string;
 
   /**  */
   description: string;
@@ -1835,6 +2009,50 @@ export interface LessonHistory {
   student: number;
 }
 
+export interface User {
+  /**  */
+  id?: number;
+
+  /**  */
+  title?: string;
+
+  /**  */
+  password: string;
+
+  /**  */
+  last_login?: Date;
+
+  /** Designates that this user has all permissions without explicitly assigning them. */
+  is_superuser?: boolean;
+
+  /** Required. 150 characters or fewer. Letters, digits and @\/.\/+\/-\/_ only. */
+  username: string;
+
+  /**  */
+  first_name?: string;
+
+  /**  */
+  last_name?: string;
+
+  /**  */
+  email?: string;
+
+  /** Designates whether the user can log into this admin site. */
+  is_staff?: boolean;
+
+  /** Designates whether this user should be treated as active. Unselect this instead of deleting accounts. */
+  is_active?: boolean;
+
+  /**  */
+  date_joined?: Date;
+
+  /** The groups this user belongs to. A user will get all permissions granted to each of their groups. */
+  groups?: number[];
+
+  /** Specific permissions for this user. */
+  user_permissions?: number[];
+}
+
 export interface TokenObtainPair {
   /**  */
   username: string;
@@ -1849,6 +2067,23 @@ export interface TokenRefresh {
 
   /**  */
   access?: string;
+}
+
+export interface BookingRecordOption {
+  /**  */
+  id?: number;
+
+  /**  */
+  start_time: Date;
+
+  /**  */
+  end_time: Date;
+
+  /**  */
+  plane: number;
+
+  /** Used in the lesson */
+  lesson?: number;
 }
 export enum EnumMaintenanceRecordProgress {
   'PENDING' = 'PENDING',
@@ -1865,7 +2100,7 @@ export enum EnumMaintenanceRecordItemStatus {
   'BAD_CONDITION' = 'BAD_CONDITION',
   'EXPIRED' = 'EXPIRED'
 }
-export enum EnumTransactionInfoName {
+export enum EnumTransactionInfoTitle {
   'CREATE_BOOKING' = 'CREATE_BOOKING',
   'DELETE_BOOKING' = 'DELETE_BOOKING',
   'CREATE_LESSON_RECORD' = 'CREATE_LESSON_RECORD',

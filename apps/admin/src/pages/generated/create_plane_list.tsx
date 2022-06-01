@@ -7,6 +7,7 @@ import {
   getValueFromEvent,
   Upload,
   Create,
+  DatePicker,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -24,7 +25,7 @@ export default function CreatePlane() {
           <Input.TextArea />
         </Form.Item>
 
-        <Form.Item label="Image" name={"image"} required>
+        <Form.Item label="Image" name={"image"} required={true}>
           <Form.Item
             name="image"
             valuePropName="file"

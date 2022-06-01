@@ -7,7 +7,9 @@ import {
   getValueFromEvent,
   Upload,
   Edit,
+  DatePicker,
 } from "@pankod/refine-antd";
+import dayjs from "dayjs";
 
 import { useNavigation } from "@pankod/refine-core";
 import qs from "query-string";
@@ -30,10 +32,17 @@ export default function EditMaintenanceRecordItem() {
     defaultValue: queryResult?.data?.data?.operator?.id,
   });
 
+  const initialValues = {
+    ...formProps.initialValues,
+    start_time: dayjs(formProps.initialValues?.start_time),
+    end_time: dayjs(formProps.initialValues?.end_time),
+    expire_at: dayjs(formProps.initialValues?.expire_at),
+  };
+
   return (
     //@ts-ignore
     <Edit saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
+      <Form {...formProps} layout="vertical" initialValues={initialValues}>
         <Form.Item label="Title" name="title" required={true}>
           <Input.TextArea />
         </Form.Item>
@@ -42,7 +51,7 @@ export default function EditMaintenanceRecordItem() {
           <Input />
         </Form.Item>
 
-        <Form.Item label="Image" name={"image"} required>
+        <Form.Item label="Image" name={"image"} required={false}>
           <Form.Item
             name="image"
             valuePropName="file"
@@ -61,15 +70,15 @@ export default function EditMaintenanceRecordItem() {
         </Form.Item>
 
         <Form.Item label="Start time" name="start_time" required={false}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
         <Form.Item label="End time" name="end_time" required={false}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
         <Form.Item label="Expire at" name="expire_at" required={false}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
         <Form.Item label="Status" name="status" required={false}>
@@ -82,11 +91,15 @@ export default function EditMaintenanceRecordItem() {
           />
         </Form.Item>
 
-        <Form.Item label="Maintenance record" name={"maintenance_record"}>
+        <Form.Item
+          label="Maintenance record"
+          name={"maintenance_record"}
+          required={true}
+        >
           <Select {...maintenance_recordSelection} />
         </Form.Item>
 
-        <Form.Item label="Operator" name={"operator"}>
+        <Form.Item label="Operator" name={"operator"} required={false}>
           <Select {...operatorSelection} />
         </Form.Item>
       </Form>

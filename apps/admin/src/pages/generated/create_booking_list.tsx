@@ -7,6 +7,7 @@ import {
   getValueFromEvent,
   Upload,
   Create,
+  DatePicker,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -28,34 +29,24 @@ export default function CreateBooking() {
     optionValue: "id",
   });
 
-  const { selectProps: userSelection } = useSelect({
-    resource: "user",
-    optionLabel: "title",
-    optionValue: "id",
-  });
-
   return (
     //@ts-ignore
     <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Start time" name="start_time" required={true}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
         <Form.Item label="End time" name="end_time" required={true}>
-          <Input />
+          <DatePicker showTime />
         </Form.Item>
 
-        <Form.Item label="Plane" name={"plane"}>
+        <Form.Item label="Plane" name={"plane"} required={true}>
           <Select {...planeSelection} />
         </Form.Item>
 
-        <Form.Item label="Lesson" name={"lesson"}>
+        <Form.Item label="Lesson" name={"lesson"} required={false}>
           <Select {...lessonSelection} />
-        </Form.Item>
-
-        <Form.Item label="User" name={"user"}>
-          <Select {...userSelection} />
         </Form.Item>
       </Form>
     </Create>

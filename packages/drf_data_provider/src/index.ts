@@ -71,7 +71,6 @@ const DrfServer = (
   create: async ({ resource, variables }) => {
     const url = `${apiUrl}/${resource}/`;
     const [generatedVariables, contentType] = getRequestBody(variables);
-
     const { data } = await httpClient.post(url, generatedVariables, {
       headers: { "Content-Type": contentType },
     });
@@ -94,6 +93,7 @@ const DrfServer = (
 
   update: async ({ resource, id, variables, metaData }) => {
     const url = `${apiUrl}/${resource}/${id}/`;
+
     const [generatedVariables, contentType] = getRequestBody(variables, true);
     console.log("generatedVariables", generatedVariables, contentType);
     const { data } = await httpClient.patch(url, generatedVariables, {

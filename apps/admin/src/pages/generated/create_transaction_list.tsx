@@ -7,6 +7,7 @@ import {
   getValueFromEvent,
   Upload,
   Create,
+  DatePicker,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -48,7 +49,7 @@ export default function CreateTransaction() {
           <Input />
         </Form.Item>
 
-        <Form.Item label="User" name={"user"}>
+        <Form.Item label="User" name={"user"} required={false}>
           <Select {...userSelection} />
         </Form.Item>
       </Form>

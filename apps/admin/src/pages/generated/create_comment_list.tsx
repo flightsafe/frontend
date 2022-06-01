@@ -7,6 +7,7 @@ import {
   getValueFromEvent,
   Upload,
   Create,
+  DatePicker,
 } from "@pankod/refine-antd";
 
 import { useNavigation } from "@pankod/refine-core";
@@ -36,11 +37,15 @@ export default function CreateComment() {
           <Input />
         </Form.Item>
 
-        <Form.Item label="Author" name={"author"}>
+        <Form.Item label="Author" name={"author"} required={true}>
           <Select {...authorSelection} />
         </Form.Item>
 
-        <Form.Item label="Lesson history" name={"lesson_history"}>
+        <Form.Item
+          label="Lesson history"
+          name={"lesson_history"}
+          required={true}
+        >
           <Select {...lesson_historySelection} />
         </Form.Item>
       </Form>

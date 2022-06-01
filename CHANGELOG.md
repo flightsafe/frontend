@@ -1,5 +1,12 @@
 # Changelog
 
+# 1.5.0 (2022-06-01)
+
+
+### Features
+
+* add date picker for booking page and add scheduler page ([#6](https://github.com/flightsafe/frontend/issues/6)) ([064b285](https://github.com/flightsafe/frontend/commit/064b2858da9192eb0f6f0dde31a90bc95b52bcd2))
+
 # 1.4.0 (2022-05-31)
 
 

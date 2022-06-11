@@ -40,7 +40,7 @@ import ListPlane from "../src/pages/generated/list_plane_list";
 import CreateMaintenance from "../src/pages/maintenance/CreateMaintenance";
 import ShowPlanePage from "../src/pages/planes/ShowPlanes";
 
-const API_URL = "http://0.0.0.0:8000/api";
+const API_URL = process.env.API_URL!;
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (

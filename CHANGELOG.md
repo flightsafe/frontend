@@ -1,5 +1,12 @@
 # Changelog
 
+# 1.6.0 (2022-06-11)
+
+
+### Features
+
+* add api url ([28591f4](https://github.com/flightsafe/frontend/commit/28591f464c3c517f7718b1ec763184372985fc98))
+
 ## 1.5.3 (2022-06-11)
 
 

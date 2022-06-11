@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.2 (2022-06-11)
+
+
+### Bug Fixes
+
+* add start action to turbo.json ([#9](https://github.com/flightsafe/frontend/issues/9)) ([d094536](https://github.com/flightsafe/frontend/commit/d094536ccdcca98a5f4ba4d8c3af94b00a22c0bf))
+
 ## 1.5.1 (2022-06-01)
 
 

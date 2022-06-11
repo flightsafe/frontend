@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.3 (2022-06-11)
+
+
+### Bug Fixes
+
+* docker issue ([#10](https://github.com/flightsafe/frontend/issues/10)) ([539a9a8](https://github.com/flightsafe/frontend/commit/539a9a80080380b55e0fde18bd753d10418164aa))
+
 ## 1.5.2 (2022-06-11)
 
 

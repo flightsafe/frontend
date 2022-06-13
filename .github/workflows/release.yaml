@@ -35,5 +35,6 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/${{ matrix.app }}:${{ github.event.release.tag_name }}
           build-args: |
             APP_NAME=${{ matrix.app }}
+            API_URL=http://server:8000/api
           cache-from: type=gha
           cache-to: type=gha,mode=max

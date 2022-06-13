@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.6.2 (2022-06-13)
+
+
+### Bug Fixes
+
+* env problem ([18765df](https://github.com/flightsafe/frontend/commit/18765df1f230a8d3b449d5aec2c7fa0383dd928d))
+
 ## 1.6.1 (2022-06-13)
 
 

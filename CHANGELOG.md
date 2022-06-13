@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.6.1 (2022-06-13)
+
+
+### Bug Fixes
+
+* update readme ([6ae772e](https://github.com/flightsafe/frontend/commit/6ae772e415fb0c57ae56a147aa6bc46518d9927f))
+
 # 1.6.0 (2022-06-11)
 
 
